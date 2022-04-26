@@ -1,0 +1,11 @@
+theme = "monokai_pro_spectrum"
+
+[editor]
+true-color = true
+auto-pairs = true
+
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"

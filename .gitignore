@@ -1,0 +1,17 @@
+/*
+
+!.gitignore
+!.gitconfig
+!.zshrc
+!.zshenv
+!.vimrc
+!.vim/
+!.oh-my-zsh/
+
+!.config/
+.config/*
+!.config/helix/
+.config/helix/runtime
+!.config/nvim/
+
+!.alacritty.yml

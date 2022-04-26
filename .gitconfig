@@ -1,0 +1,14 @@
+[user]
+	email = eetu.kivelae@gmail.com
+	name = karei
+	signingkey = 16BE3BEDB825934A
+[pull]
+	rebase = false
+[core]
+	editor = hx
+[init]
+	defaultBranch = dev
+[gpg]
+	program = gpg
+[commit]
+	gpgsign = true
