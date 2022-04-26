@@ -6,4 +6,4 @@
 * helix
 * neovim
 * git
-
+* starship

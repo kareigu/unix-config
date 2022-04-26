@@ -12,7 +12,7 @@
 .config/*
 !.config/helix/
 .config/helix/runtime
-!.config/nvim/
+!.config/nvim/init.vim
 !.config/starship.toml
 
 !.alacritty.yml
