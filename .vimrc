@@ -24,16 +24,3 @@ set termguicolors
 set undolevels=1000	
 set backspace=indent,eol,start	
 
-call plug#begin('~/.vim/plugged')
-
-Plug 'joshdick/onedark.vim'
-
-Plug 'sheerun/vim-polyglot'
-
-Plug 'vim-airline/vim-airline'
-
-Plug 'jreybert/vimagit'
-
-call plug#end()
-
-colorscheme onedark
