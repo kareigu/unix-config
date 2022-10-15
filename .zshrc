@@ -10,7 +10,7 @@ export PATH=~/.zig/:$PATH
 
 autoload bashcompinit
 bashcompinit
-source /usr/share/bash-completion/completions/nala
+source ~/.config/helix/contrib/completion/hx.zsh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,

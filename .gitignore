@@ -11,6 +11,7 @@
 .config/*
 !.config/helix/
 .config/helix/runtime
+.config/helix/contrib
 !.config/nvim/init.vim
 !.config/starship.toml
 
