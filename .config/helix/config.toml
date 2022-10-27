@@ -3,7 +3,8 @@ theme = "monokai_pro_spectrum"
 [editor]
 true-color = true
 auto-pairs = true
-
+cursorline = true
+color-modes = true
 
 [editor.cursor-shape]
 insert = "bar"
