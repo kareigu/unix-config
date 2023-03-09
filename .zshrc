@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="${0:A:h}/.oh-my-zsh"
+export ZSH=~/.oh-my-zsh
 export PATH=~/.cargo/bin/:$PATH
 export PATH=~/.zig/:$PATH
 
