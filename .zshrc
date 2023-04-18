@@ -5,6 +5,7 @@
 export ZSH=~/.oh-my-zsh
 export PATH=~/.cargo/bin/:$PATH
 export PATH=~/.zig/:$PATH
+export PATH=~/.local/bin:$PATH
 
 
 
@@ -109,5 +110,16 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 export GPG_TTY=$(tty)
 
+# git
+alias gs="git status"
+alias gap="git add -p"
+alias gpl="git pull"
+alias gp="git push"
+alias gc="git commit"
+
+
+alias ls="exa --icons --git --time-style full-iso"
+alias cd=z
