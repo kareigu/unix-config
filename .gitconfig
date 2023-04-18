@@ -1,11 +1,28 @@
 [user]
 	email = eetu.kivelae@gmail.com
 	name = karei
-	signingkey = 16BE3BEDB825934A
+	signingkey = 
 [pull]
 	rebase = false
 [core]
 	editor = hx
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only --features=interactive
+
+[delta]
+	navigate = true
+	light = false
+	line-numbers = true
+	features = decorations
+
+[merge]
+	conflictStyle = diff3
+
+[diff]
+	colorMoved = default
+
 [init]
 	defaultBranch = dev
 [gpg]
