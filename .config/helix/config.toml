@@ -5,8 +5,20 @@ true-color = true
 auto-pairs = true
 cursorline = true
 color-modes = true
+bufferline = "multiple"
+soft-wrap.enable = true
+lsp.display-inlay-hints = true
+lsp.display-messages = true
 
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
 select = "underline"
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "file-modification-indicator", "spacer", "diagnostics"]
+right = ["version-control", "selections", "position", "file-encoding"]
+#version-control-prefix = " "
+mode.normal = " NORMAL"
+mode.insert = " INSERT"
+mode.select = "ﭟ SELECT"
