@@ -15,6 +15,10 @@
 .config/helix/contrib
 !.config/nvim/init.vim
 !.config/starship.toml
+!.config/polybar
+!.config/picom
+!.config/leftwm
+!leftwm-soothe
 
 !.alacritty.yml
 
