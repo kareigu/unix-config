@@ -13,7 +13,7 @@
 !.config/helix/
 .config/helix/runtime
 .config/helix/contrib
-!.config/nvim/init.vim
+!.config/nvim/
 !.config/starship.toml
 !.config/polybar
 !.config/picom
