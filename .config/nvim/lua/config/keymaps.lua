@@ -22,6 +22,16 @@ end, { desc = "Terminal (cwd)" })
 unmap("n", "<leader>ft", { desc = "Terminal (root dir)" })
 unmap("n", "<leader>fT", { desc = "Terminal (cwd)" })
 
+map("n", "<leader>ft", function()
+  require("telescope").extensions.file_browser.file_browser({
+    path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)),
+    select_buffer = true,
+  })
+end, { desc = "Open file browser (cwd)" })
+map("n", "<leader>fT", function()
+  require("telescope").extensions.file_browser.file_browser()
+end, { desc = "Open file browser" })
+
 if vim.g.neovide then
   map("n", "<leader>mF", function()
     vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen
