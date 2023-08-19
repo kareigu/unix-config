@@ -6,7 +6,9 @@ local opt = vim.opt
 
 opt.relativenumber = false
 opt.wrap = true
-opt.shell = "pwsh"
+if vim.loop.os_uname().sysname == "Windows" then
+  opt.shell = "pwsh"
+end
 
 local function append_val(enum, val)
   enum.append(enum, val)
