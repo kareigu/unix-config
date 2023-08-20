@@ -6,7 +6,7 @@ local opt = vim.opt
 
 opt.relativenumber = false
 opt.wrap = true
-if vim.loop.os_uname().sysname == "Windows" then
+if vim.loop.os_uname().sysname == "Windows_NT" then
   opt.shell = "pwsh"
 end
 
