@@ -3,21 +3,28 @@
 -- Add any additional keymaps here
 local Util = require("lazyvim.util")
 
-local function map(mode, lhs, rhs, opts)
-  vim.keymap.set(mode, lhs, rhs, opts)
+---vim.keymap.set wrapper
+---@param mode string|table
+---@param key string
+---@param action string|function
+---@param opts table|nil
+local function map(mode, key, action, opts)
+  vim.keymap.set(mode, key, action, opts)
 end
 
-local function unmap(mode, lhs, opts)
-  vim.keymap.del(mode, lhs, opts)
+---vim.keymap.del wrapper
+---@param mode string|table
+---@param key string
+---@param opts table|nil
+local function unmap(mode, key, opts)
+  vim.keymap.del(mode, key, opts)
 end
 
 local lazyterm = function()
   Util.float_term(nil, { cwd = Util.get_root() })
 end
 map("n", "<leader>t", lazyterm, { desc = "Terminal (root dir)" })
-map("n", "<leader>T", function()
-  Util.float_term()
-end, { desc = "Terminal (cwd)" })
+map("n", "<leader>T", Util.float_term, { desc = "Terminal (cwd)" })
 
 unmap("n", "<leader>ft", { desc = "Terminal (root dir)" })
 unmap("n", "<leader>fT", { desc = "Terminal (cwd)" })
