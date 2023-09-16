@@ -39,6 +39,9 @@ map("n", "<leader>fT", function()
   require("telescope").extensions.file_browser.file_browser()
 end, { desc = "Open file browser" })
 
+map("n", "<leader>bg", "<cmd>BufferLinePick<cr>", { desc = "Open buffer picker" })
+map("n", "<leader>bG", "<cmd>BufferLinePickClose<cr>", { desc = "Open buffer close picker" })
+
 if vim.g.neovide then
   map("n", "<leader>mF", function()
     vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen
