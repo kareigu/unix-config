@@ -21,10 +21,10 @@ local function unmap(mode, key, opts)
 end
 
 local lazyterm = function()
-  Util.float_term(nil, { cwd = Util.get_root() })
+  Util.terminal.open(nil, { cwd = Util.root.get() })
 end
 map("n", "<leader>t", lazyterm, { desc = "Terminal (root dir)" })
-map("n", "<leader>T", Util.float_term, { desc = "Terminal (cwd)" })
+map("n", "<leader>T", Util.terminal.open, { desc = "Terminal (cwd)" })
 
 unmap("n", "<leader>ft", { desc = "Terminal (root dir)" })
 unmap("n", "<leader>fT", { desc = "Terminal (cwd)" })
