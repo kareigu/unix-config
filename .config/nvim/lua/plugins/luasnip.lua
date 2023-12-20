@@ -1,8 +1,8 @@
 return {
   "L3MON4D3/LuaSnip",
   keys = {
-    { "<tab>", nil, mode = "s", "i" },
-    { "<s-tab>", nil, mode = { "i", "s" } },
+    { "<tab>", false },
+    { "<s-tab>", false },
     {
       "<C-K>",
       function()
