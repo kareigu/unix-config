@@ -121,5 +121,5 @@ alias gp="git push"
 alias gc="git commit"
 
 
-alias ls="exa --icons --git --time-style full-iso"
+alias ls="lsd"
 alias cd=z
