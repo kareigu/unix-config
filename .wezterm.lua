@@ -4,7 +4,9 @@ local config = wezterm.config_builder()
 
 local font_family = "Mononoki Nerd Font Mono"
 
-config.default_prog = { "pwsh" }
+if wezterm.hostname() == "WS" then
+	config.default_prog = { "pwsh" }
+end
 config.color_scheme = "Kanagawa (Gogh)"
 config.font = wezterm.font(font_family)
 config.window_frame = {
@@ -27,8 +29,27 @@ config.colors = {
 		},
 	},
 }
+config.initial_rows = 30
+config.initial_cols = 120
+config.front_end = "OpenGL"
+config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
+config.integrated_title_button_color = "#2d4f67"
+config.freetype_load_target = "Light"
+config.window_background_opacity = 0
+config.win32_system_backdrop = "Mica"
 
-local leader_key = "b"
+local function set_max_fps_to_refresh(window)
+	local max_refresh = wezterm.gui.screens().active.max_fps
+	local overrides = window:get_config_overrides() or {}
+	if max_refresh ~= nil then
+		overrides.max_fps = max_refresh
+		overrides.animation_fps = math.floor(overrides.max_fps / 2)
+	end
+	window:set_config_overrides(overrides)
+end
+wezterm.on("window-focus-changed", set_max_fps_to_refresh)
+
+local leader_key = "a"
 config.leader = { key = leader_key, mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
 	{
