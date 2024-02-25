@@ -19,8 +19,10 @@ append_val(opt.pumblend, 25)
 
 if vim.g.neovide then
   vim.opt.guifont = "Mononoki Nerd Font Mono:h13"
-  vim.g.neovide_window_blurred = true
-  vim.g.neovide_transparency = 0.7
+  if vim.loop.os_uname().sysname == "Darwin" then
+    vim.g.neovide_window_blurred = true
+    vim.g.neovide_transparency = 0.7
+  end
   vim.g.neovide_floating_shadow = true
   vim.g.neovide_floating_z_height = 10
   vim.g.neovide_light_angle_degrees = 45
