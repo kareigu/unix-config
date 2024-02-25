@@ -25,6 +25,7 @@ alias gap="git add -p"
 alias gpl="git pull"
 alias gp="git push"
 alias gc="git commit"
+alias lzg=lzg
 
 
 alias ls="lsd"
