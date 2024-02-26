@@ -9,6 +9,7 @@ if wezterm.hostname() == "WS" then
 end
 config.color_scheme = "Kanagawa (Gogh)"
 config.font = wezterm.font(font_family)
+config.default_cursor_style = "BlinkingUnderline"
 config.window_frame = {
 	font = wezterm.font({ family = font_family, weight = "Bold" }),
 	active_titlebar_bg = "#1f1f28",
