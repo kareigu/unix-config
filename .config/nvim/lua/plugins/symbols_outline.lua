@@ -1,18 +1,15 @@
 return {
   {
-    "hedyhli/outline.nvim",
-    cmd = "Outline",
-    keys = { { "<leader>cs", "<cmd>Outline<cr>", desc = "Toggle Outline" } },
+    "enddeadroyal/symbols-outline.nvim",
+    branch = "bugfix/symbol-hover-misplacement",
+    cmd = "SymbolsOutline",
+    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
     config = true,
     opts = {
-      outline_window = {
-        width = 40,
-        auto_close = true,
-        show_numbers = true,
-      },
-      preview_window = {
-        auto_preview = true,
-      },
+      width = 40,
+      auto_preview = true,
+      show_numbers = true,
+      auto_close = true,
     },
   },
 }
