@@ -6,6 +6,7 @@ program = "pwsh"
 
 [window]
 dimensions = { columns = 140, lines = 40 }
+padding = { x = 8, y = 8 }
 dynamic_padding = true
 opacity = 0.95
 title = "Alacritty"
