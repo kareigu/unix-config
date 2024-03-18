@@ -1,22 +1,18 @@
-[env]
-TERM = "tmux-256color"
-
-[shell]
-program = "pwsh"
-
 [window]
 dimensions = { columns = 140, lines = 40 }
-padding = { x = 8, y = 8 }
+padding = { x = 8, y = 4 }
 dynamic_padding = true
-opacity = 0.95
+opacity = 0.7
 title = "Alacritty"
 resize_increments = true
+blur = true
 
 [scrolling]
 history = 5_000
 
 [font]
 normal = { family = "Mononoki Nerd Font Mono", style = "Regular" }
+size = 13
 
 [colors.primary]
 background = "0x1f1f28"
@@ -62,4 +58,15 @@ unfocused_hollow = true
 bindings = [
   { mouse = "Middle", action = "PasteSelection" },
   { mouse = "Right", action = "Copy" },
+]
+
+[keyboard]
+bindings = [
+  { key = "Tab", mods = "Control", action = "SelectNextTab"},
+  { key = "Tab", mods = "Control|Shift", action = "SelectPreviousTab"},
+  { key = "1", mods = "Command", action = "SelectTab1"},
+  { key = "2", mods = "Command", action = "SelectTab2"},
+  { key = "3", mods = "Command", action = "SelectTab3"},
+  { key = "4", mods = "Command", action = "SelectTab4"},
+  { key = "5", mods = "Command", action = "SelectTab5"},
 ]
