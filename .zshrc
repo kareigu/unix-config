@@ -16,8 +16,10 @@ source $ZSH/oh-my-zsh.sh
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh --cmd cd)"
+eval "$(fzf --zsh)"
 export GPG_TTY=$(tty)
 export EDITOR=nvim
+export MANPAGER="col -xbf | bat -p -l man"
 
 # git
 alias gs="git status"
@@ -25,7 +27,7 @@ alias gap="git add -p"
 alias gpl="git pull"
 alias gp="git push"
 alias gc="git commit"
-alias lzg=lzg
+alias lzg=lazygit
 
 
 alias ls="lsd"
