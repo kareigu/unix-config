@@ -26,7 +26,8 @@
     border-color: @background;
     spacing: 2;
     ac: @active-background;
-    fg: @active-foreground;
+    fg: @foreground;
+    bg: @background;
 }
 
 #window {
