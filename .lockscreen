@@ -1,0 +1,54 @@
+#!/bin/sh
+
+alpha='dd'
+background='#1F1F28'
+selection='#16161D'
+comment='#27169'
+
+yellow='#E6C384'
+orange='#FFA066'
+red='#FF5D62'
+magenta='#957FB8'
+blue='#7E9CD8'
+cyan='#6A9589'
+green='#98BB6C'
+
+i3lock \
+	--insidever-color=$selection$alpha \
+	--insidewrong-color=$selection$alpha \
+	--inside-color=$selection$alpha \
+	--ringver-color=$green$alpha \
+	--ringwrong-color=$red$alpha \
+	--ringver-color=$green$alpha \
+	--ringwrong-color=$red$alpha \
+	--ring-color=$blue$alpha \
+	--line-uses-ring \
+	--keyhl-color=$magenta$alpha \
+	--bshl-color=$orange$alpha \
+	--separator-color=$selection$alpha \
+	--verif-color=$green \
+	--wrong-color=$red \
+	--modif-color=$red \
+	--layout-color=$blue \
+	--date-color=$blue \
+	--time-color=$blue \
+	--blur 15 \
+	--clock \
+	--indicator \
+	--time-str="%H:%M:%S" \
+	--date-str="%A %e %B %Y" \
+	--verif-text="Checking..." \
+	--wrong-text="Wrong" \
+	--noinput="No Input" \
+	--lock-text="Locking..." \
+	--lockfailed="Lock Failed" \
+	--radius=120 \
+	--ring-width=10 \
+	--pass-media-keys \
+	--pass-screen-keys \
+	--pass-volume-keys \
+	--time-font="MononokiNerdFont" \
+	--date-font="MononokiNerdFont" \
+	--layout-font="MononokiNerdFont" \
+	--verif-font="MononokiNerdFont" \
+	--wrong-font="MononokiNerdFont"

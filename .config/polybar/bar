@@ -195,11 +195,15 @@ label-close-foreground = ${colors.background}
 label-separator = " | "
 label-separator-foreground = ${colors.background}
 
+; lock
+menu-0-0 = "Lock"
+menu-0-0-exec = ~/.lockscreen
+menu-0-0-foreground = ${colors.background}
 
 ; logout
-menu-0-0 = "Log out"
-menu-0-0-exec = bspc quit
-menu-0-0-foreground = ${colors.background}
+menu-0-1 = "Log out"
+menu-0-1-exec = bspc quit
+menu-0-1-foreground = ${colors.background}
 
 [settings]
 screenchange-reload = true
