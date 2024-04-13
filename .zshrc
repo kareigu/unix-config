@@ -1,22 +1,29 @@
-export ZSH=~/.oh-my-zsh
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+
+zinit wait lucid for \
+  atinit"zicompinit; zicdreplay" \
+      zdharma-continuum/fast-syntax-highlighting \
+  atload"_zsh_autosuggest_start" \
+      zsh-users/zsh-autosuggestions \
+  blockf atpull'zinit creinstall -q .' \
+      zsh-users/zsh-completions
+
+zinit id-as"auto" for \
+  atload"bindkey -e" \
+      "https://github.com/belak/zsh-utils/blob/main/editor/editor.plugin.zsh" \
+  atload'eval "$(fzf --zsh)"' \
+      "https://github.com/belak/zsh-utils/blob/main/history/history.plugin.zsh" \
+
+
 export PATH=~/.cargo/bin/:$PATH
 export PATH=~/.zig/:$PATH
 export PATH=~/.local/bin:$PATH
 
-
-
-autoload bashcompinit
-bashcompinit
-source ~/.config/helix/contrib/completion/hx.zsh
-
-ZSH_THEME="robbyrussell"
-plugins=(git colorize zsh-interactive-cd rust docker-compose zsh-autosuggestions zsh-syntax-highlighting)
-
-source $ZSH/oh-my-zsh.sh
-
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh --cmd cd)"
-eval "$(fzf --zsh)"
 export GPG_TTY=$(tty)
 export EDITOR=nvim
 export MANPAGER="col -xbf | bat -p -l man"
@@ -31,3 +38,5 @@ alias lzg=lazygit
 
 
 alias ls="lsd"
+alias l="ls -la"
+alias la="ls -lA"
