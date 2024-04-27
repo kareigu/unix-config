@@ -1,5 +1,11 @@
 return {
-  { "rebelot/kanagawa.nvim" },
+  {
+    "rebelot/kanagawa.nvim",
+    opts = {
+      compile = true,
+    },
+    build = ":KanagawaCompile",
+  },
 
   {
     "LazyVim/LazyVim",
