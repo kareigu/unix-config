@@ -7,6 +7,12 @@ return {
       clangd = {
         mason = false,
       },
+      rust_analyzer = {
+        mason = false,
+      },
+      zls = {
+        mason = false,
+      },
     },
   },
 }
