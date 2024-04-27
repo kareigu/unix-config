@@ -1,0 +1,13 @@
+[user]
+name = "karei"
+email = "mail@karei.dev"
+
+[ui]
+default-command = "status"
+
+[signing]
+key = 
+
+[template-aliases]sign-all = true
+backend = "gpg"
+'format_short_signature(signature)' = 'signature'
