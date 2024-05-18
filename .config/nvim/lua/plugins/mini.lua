@@ -21,7 +21,7 @@ return {
   {
     "echasnovski/mini.surround",
     opts = {},
-    event = "VeryLazy",
+    keys = { "s", desc = "surround" },
   },
   {
     "echasnovski/mini.pairs",

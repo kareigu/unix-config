@@ -169,7 +169,7 @@ return {
   },
   {
     "stevearc/conform.nvim",
-    lazy = false,
+    event = "BufReadPost",
     keys = {
       {
         "<leader>cf",
@@ -181,7 +181,7 @@ return {
       },
     },
     opts = {
-      notify_on_error = false,
+      notify_on_error = true,
       format_on_save = function(bufnr)
         local disable_filetypes = {}
         return {

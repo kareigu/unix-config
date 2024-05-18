@@ -2,12 +2,13 @@ return {
   "tpope/vim-sleuth",
   {
     "folke/todo-comments.nvim",
-    event = "BufEnter",
+    event = "BufReadPost",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = { signs = false },
   },
   {
     "rcarriga/nvim-notify",
+    event = "VimEnter",
     config = function()
       vim.notify = require("notify")
     end,

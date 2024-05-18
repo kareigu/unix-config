@@ -51,7 +51,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  "tpope/vim-sleuth",
+  { "tpope/vim-sleuth", event = "BufRead" },
   {
     "folke/which-key.nvim",
     keys = {
@@ -231,4 +231,4 @@ require("lazy").setup({
   {
     import = "plugins",
   },
-})
+}, { install = { colorscheme = { "kanagawa" } } })
