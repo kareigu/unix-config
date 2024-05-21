@@ -16,6 +16,13 @@ return {
   },
   keys = {
     { "<leader><leader>", "<cmd>Telescope find_files<CR>", desc = "Search files" },
+    {
+      "<leader>.",
+      function()
+        require("telescope.builtin").find_files({ cwd = require("telescope.utils").buffer_dir() })
+      end,
+      desc = "Search files (cwd)",
+    },
     { "<leader>sh", "<cmd>Telescope help_tags<CR>", desc = "Search help" },
     { "<leader>sm", "<cmd>Telescope man_pages<CR>", desc = "Search man pages" },
     { '<leader>s"', "<cmd>Telescope registers<CR>", desc = "Search registers" },
@@ -28,9 +35,34 @@ return {
     { "<leader>sr", "<cmd>Telescope resume<CR>", desc = "Search resume" },
     { "<leader>s.", "<cmd>Telescope oldfiles<CR>", desc = "Search recent files" },
     { "<leader>bs", "<cmd>Telescope buffers<CR>", desc = "Find existing buffers" },
-    { "<leader>/", desc = "Search in current buffer" },
-    { "<leader>s/", desc = "Search in open files" },
-    { "<leader>sc", desc = "Search config files" },
+    {
+      "<leader>/",
+      function()
+        require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+          winblend = 10,
+          previewer = true,
+        }))
+      end,
+      desc = "Search in current buffer",
+    },
+    {
+      "<leader>s/",
+      function()
+        require("telescope.builtin").live_grep({
+          grep_open_files = true,
+          prompt_title = "Search in open files",
+        })
+      end,
+      desc = "Search in open files",
+    },
+    {
+      "<leader>sc",
+      function()
+        local config_path = vim.fn.stdpath("config")
+        require("telescope.builtin").find_files({ cwd = config_path, prompt_title = "Search config files: " .. config_path })
+      end,
+      desc = "Search config files",
+    },
   },
   config = function()
     require("telescope").setup({
@@ -43,25 +75,5 @@ return {
 
     pcall(require("telescope").load_extension, "fzf")
     pcall(require("telescope").load_extension, "ui-select")
-
-    local builtin = require("telescope.builtin")
-
-    vim.keymap.set("n", "<leader>/", function()
-      builtin.current_buffer_fuzzy_find(require("telescope.themes").get_cursor({
-        winblend = 10,
-        previewer = false,
-      }))
-    end, { desc = "Search in current buffer" })
-
-    vim.keymap.set("n", "<leader>s/", function()
-      builtin.live_grep({
-        grep_open_files = true,
-        prompt_title = "Search in open files",
-      })
-    end, { desc = "Search in open files" })
-
-    vim.keymap.set("n", "<leader>sc", function()
-      builtin.find_files({ cwd = vim.fn.stdpath("config") })
-    end, { desc = "Search config files" })
   end,
 }
