@@ -7,7 +7,8 @@ return {
       "WhoIsSethDaniel/mason-tool-installer.nvim",
       { "folke/neodev.nvim", opts = {} },
     },
-    event = "BufRead",
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "LspInfo", "LspInstall", "LspUninstall" },
     config = function()
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("krg-lsp-attach", { clear = true }),
@@ -169,7 +170,9 @@ return {
   },
   {
     "stevearc/conform.nvim",
-    event = "BufReadPost",
+    lazy = true,
+    cmd = "ConformInfo",
+    event = "BufWritePre",
     keys = {
       {
         "<leader>cf",
