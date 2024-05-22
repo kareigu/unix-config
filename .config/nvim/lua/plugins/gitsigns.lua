@@ -1,13 +1,6 @@
 return {
   "lewis6991/gitsigns.nvim",
-  event = function()
-    local paths = vim.fs.find({ ".git" }, { upward = true })
-    if #paths > 0 then
-      return "BufEnter"
-    else
-      return "DirChangedPre"
-    end
-  end,
+  event = { "BufReadPost", "BufNew" },
   keys = {
     { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Search commits" },
     { "<leader>gB", "<cmd>Telescope git_branches<CR>", desc = "Search branches" },
