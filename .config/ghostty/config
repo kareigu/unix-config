@@ -7,6 +7,9 @@ window-width = 150
 window-height = 48
 macos-titlebar-tabs = true
 
+background-opacity = 0.85
+background-blur-radius = 20
+
 cursor-style = underline
 
 window-padding-x = 4
