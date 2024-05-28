@@ -54,9 +54,7 @@ require("lazy").setup({
   { "tpope/vim-sleuth", event = "BufRead" },
   {
     "folke/which-key.nvim",
-    keys = {
-      { "<leader>", desc = "Show which-key" },
-    },
+    event = "VeryLazy",
     config = function()
       require("which-key").setup()
 
