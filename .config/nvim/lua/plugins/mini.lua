@@ -20,8 +20,18 @@ return {
   },
   {
     "echasnovski/mini.surround",
-    opts = {},
-    keys = { "s", desc = "surround" },
+    event = "VeryLazy",
+    opts = {
+      mappings = {
+        add = "ms",
+        delete = "md",
+        replace = "mr",
+        highlight = "mh",
+        find = "mf",
+        find_left = "mF",
+        update_lines = "mn",
+      },
+    },
   },
   {
     "echasnovski/mini.pairs",
