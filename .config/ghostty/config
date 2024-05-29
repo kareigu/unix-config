@@ -1,6 +1,5 @@
-font-size = 13
-font-family = "Mononoki Nerd Font Mono"
-window-title-font-family = "Mononoki Nerd Font"
+font-family = "BerkeleyMono Nerd Font"
+window-title-font-family = "BerkeleyMono Nerd Font"
 
 window-colorspace = display-p3
 window-width = 150
