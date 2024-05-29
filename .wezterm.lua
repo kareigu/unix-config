@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
-local font_family = "Mononoki Nerd Font Mono"
+local font_family = "BerkeleyMono Nerd Font"
 
 if wezterm.hostname() == "WS" then
 	config.default_prog = { "pwsh" }
