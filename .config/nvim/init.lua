@@ -22,6 +22,7 @@ vim.o.tabstop = 4
 vim.o.wildmenu = true
 vim.o.wildmode = "longest:full,full"
 
+local transparent = true
 if vim.g.neovide then
   vim.opt.guifont = "BerkeleyMono Nerd Font:h12"
   if vim.loop.os_uname().sysname == "Darwin" then
@@ -32,6 +33,7 @@ if vim.g.neovide then
   vim.g.neovide_floating_z_height = 10
   vim.g.neovide_light_angle_degrees = 45
   vim.g.neovide_light_radius = 5
+  transparent = false
 end
 
 require("config.keys")
@@ -85,7 +87,7 @@ require("lazy").setup({
     ---@type KanagawaConfig
     opts = {
       compile = true,
-      transparent = true,
+      transparent = transparent,
       ---@param colors KanagawaColors
       overrides = function(colors)
         local theme = colors.theme
