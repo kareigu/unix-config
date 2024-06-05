@@ -7,13 +7,6 @@ return {
     { "<leader>gf", "<cmd>Telescope git_files<CR>", desc = "Search branches" },
   },
   opts = {
-    signs = {
-      add = { text = "+" },
-      change = { text = "~" },
-      delete = { text = "_" },
-      topdelete = { text = "‾" },
-      changedelete = { text = "~" },
-    },
     on_attach = function(bufnr)
       local gitsigns = require("gitsigns")
 
