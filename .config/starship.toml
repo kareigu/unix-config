@@ -42,5 +42,5 @@ jj log -r@ -l1 --ignore-working-copy --no-graph --color always  -T '
 '
 '''
 detect_folders = [".jj"]
-symbol = "󱍿 "
+symbol = "󰝴 "
 style = "bold blue"
