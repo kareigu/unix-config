@@ -1,3 +1,23 @@
+local servers = {
+  clangd = {},
+  rust_analyzer = {},
+  zls = {},
+  lua_ls = {
+    mason = true,
+    settings = {
+      Lua = {
+        completion = {
+          callSnippet = "Replace",
+        },
+      },
+    },
+  },
+}
+
+local misc_tools = {
+  "stylua",
+}
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -119,41 +139,18 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-      local servers = {
-        clangd = {
-          mason = false,
-        },
-        rust_analyzer = {
-          mason = false,
-        },
-        zls = {
-          mason = false,
-        },
-        lua_ls = {
-          settings = {
-            Lua = {
-              completion = {
-                callSnippet = "Replace",
-              },
-            },
-          },
-        },
-      }
-
       require("mason").setup()
 
       ---@type string[]
       local ensure_installed = {}
       for server, server_opts in pairs(servers) do
-        if server_opts.mason == false then
-          require("lspconfig")[server].setup(server_opts)
-        else
+        if server_opts.mason == true then
           ensure_installed[#ensure_installed + 1] = server
+        else
+          require("lspconfig")[server].setup(server_opts)
         end
       end
-      vim.list_extend(ensure_installed, {
-        "stylua",
-      })
+      vim.list_extend(ensure_installed, misc_tools)
 
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
