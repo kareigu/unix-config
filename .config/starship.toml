@@ -4,9 +4,9 @@ add_newline = true
 [line_break]
 disabled = true
 
-[character]                            
+[character]
 success_symbol = "[➜](bold green)"
-error_symbol = "[➜](bold red)" 
+error_symbol = "[➜](bold red)"
 
 # Disable the package module, hiding it from the prompt completely
 [package]
@@ -17,3 +17,30 @@ symbol = "🦀 "
 
 [nodejs]
 style = "bold green"
+
+[custom.jj]
+command = '''
+jj log -r@ -l1 --ignore-working-copy --no-graph --color always  -T '
+  separate("",
+    coalesce(
+      if(hidden, "hidden"),
+      if(divergent, "divergent"),
+      if(conflict, "conflict"),
+      branches.map(|x| if(
+          x.name().substr(0, 10).starts_with(x.name()),
+          x.name().substr(0, 10),
+          x.name().substr(0, 9) ++ "…")
+        ).join(" "),
+      tags.map(|x| if(
+          x.name().substr(0, 10).starts_with(x.name()),
+          x.name().substr(0, 10),
+          x.name().substr(0, 9) ++ "…")
+        ).join(" ")
+    ),
+    surround("@", "", self.change_id().shortest())
+  )
+'
+'''
+detect_folders = [".jj"]
+symbol = "󱍿 "
+style = "bold blue"
