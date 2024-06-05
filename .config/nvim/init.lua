@@ -23,7 +23,7 @@ vim.o.wildmenu = true
 vim.o.wildmode = "longest:full,full"
 
 if vim.g.neovide then
-  vim.opt.guifont = "Mononoki Nerd Font Mono:h13"
+  vim.opt.guifont = "BerkeleyMono Nerd Font:h12"
   if vim.loop.os_uname().sysname == "Darwin" then
     vim.g.neovide_window_blurred = true
     vim.g.neovide_transparency = 0.7
