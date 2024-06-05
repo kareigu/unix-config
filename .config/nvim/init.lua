@@ -18,6 +18,7 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
+vim.o.tabstop = 4
 vim.o.wildmenu = true
 vim.o.wildmode = "longest:full,full"
 
