@@ -4,7 +4,7 @@ window-title-font-family = "BerkeleyMono Nerd Font"
 window-colorspace = display-p3
 window-width = 150
 window-height = 48
-macos-titlebar-tabs = true
+macos-titlebar-style = tabs
 
 background-opacity = 0.85
 background-blur-radius = 20
