@@ -20,7 +20,7 @@ return {
           map("gD", vim.lsp.buf.declaration, "Goto declaration")
           map("gI", require("telescope.builtin").lsp_implementations, "Goto implementation")
           map("<leader>cd", require("telescope.builtin").lsp_definitions, "List definitions")
-          map("<leader>cr", require("telescope.builtin").lsp_references, "List references")
+          map("<leader>cR", require("telescope.builtin").lsp_references, "List references")
           map("<leader>cs", require("telescope.builtin").lsp_document_symbols, "Document symbols")
           map("<leader>cS", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace symbols")
           map("<leader>cr", vim.lsp.buf.rename, "Rename")
