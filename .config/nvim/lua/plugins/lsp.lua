@@ -16,6 +16,7 @@ local servers = {
 
 local misc_tools = {
   "stylua",
+  "shfmt",
 }
 
 return {
