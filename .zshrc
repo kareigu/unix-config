@@ -17,6 +17,7 @@ zinit id-as"auto" for \
   atload'eval "$(fzf --zsh)"' \
       "https://git.sr.ht/~kareigu/zsh-utils/blob/main/history/history.plugin.zsh" \
 
+zstyle ':completion:*' menu yes select
 
 export PATH=~/.cargo/bin/:$PATH
 export PATH=~/.zig/:$PATH
