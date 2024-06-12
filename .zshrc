@@ -18,6 +18,7 @@ zinit id-as"auto" for \
       "https://git.sr.ht/~kareigu/zsh-utils/blob/main/history/history.plugin.zsh" \
 
 zstyle ':completion:*' menu yes select
+unsetopt LIST_BEEP
 
 export PATH=~/.cargo/bin/:$PATH
 export PATH=~/.zig/:$PATH
