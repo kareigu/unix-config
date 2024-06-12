@@ -13,9 +13,9 @@ zinit wait lucid for \
 
 zinit id-as"auto" for \
   atload"bindkey -e" \
-      "https://github.com/belak/zsh-utils/blob/main/editor/editor.plugin.zsh" \
+      "https://git.sr.ht/~kareigu/zsh-utils/blob/main/editor/editor.plugin.zsh" \
   atload'eval "$(fzf --zsh)"' \
-      "https://github.com/belak/zsh-utils/blob/main/history/history.plugin.zsh" \
+      "https://git.sr.ht/~kareigu/zsh-utils/blob/main/history/history.plugin.zsh" \
 
 
 export PATH=~/.cargo/bin/:$PATH
