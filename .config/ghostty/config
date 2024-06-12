@@ -10,6 +10,7 @@ background-opacity = 0.85
 background-blur-radius = 20
 
 cursor-style = underline
+shell-integration-features = no-cursor
 
 window-padding-x = 4
 window-padding-y = 4
