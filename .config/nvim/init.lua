@@ -18,8 +18,12 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
-vim.o.tabstop = 4
 vim.o.showbreak = "↪ "
+vim.o.autoindent = true
+vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
+vim.o.smartindent = true
+vim.o.smarttab = true
 vim.o.wildmenu = true
 vim.o.wildmode = "longest:full,full"
 
