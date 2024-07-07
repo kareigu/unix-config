@@ -21,9 +21,20 @@ local misc_tools = {
 
 return {
   {
+    "williamboman/mason.nvim",
+    cmd = {
+      "Mason",
+      "MasonUpdate",
+      "MasonInstall",
+      "MasonUninstall",
+      "MasonUninstallAll",
+      "MasonLog",
+    },
+    config = true,
+  },
+  {
     "neovim/nvim-lspconfig",
     dependencies = {
-      { "williamboman/mason.nvim", config = true },
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
       { "folke/neodev.nvim", opts = {} },
