@@ -30,6 +30,9 @@ return {
       "MasonUninstallAll",
       "MasonLog",
     },
+    keys = {
+      { "<leader>cm", "<CMD>Mason<CR>", desc = "Mason" },
+    },
     config = true,
   },
   {

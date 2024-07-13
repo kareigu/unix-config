@@ -63,27 +63,35 @@ require("lazy").setup({
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
-    config = function()
-      require("which-key").setup()
-
-      require("which-key").register({
-        ["<leader>b"] = { name = "buffer", _ = "which_key_ignore" },
-        ["<leader>c"] = { name = "code", _ = "which_key_ignore" },
-        ["<leader>d"] = { name = "debug", _ = "which_key_ignore" },
-        ["<leader>s"] = { name = "search", _ = "which_key_ignore" },
-        ["<leader>u"] = { name = "ui", _ = "which_key_ignore" },
-        ["<leader>g"] = { name = "git", _ = "which_key_ignore" },
-        ["<leader>x"] = { name = "session", _ = "which_key_ignore" },
-        ["<leader>m"] = { name = "misc", _ = "which_key_ignore" },
-        ["<leader>ms"] = { name = "Spectre", _ = "which_key_ignore" },
-      })
-      require("which-key").register({
-        ["<leader>h"] = { "git hunk" },
-        ["<leader>c"] = { "code" },
-        ["<leader>m"] = { "misc" },
-        ["<leader>ms"] = { "Spectre" },
-      }, { mode = "v" })
-    end,
+    ---@type wk.Opts
+    opts = {
+      preset = "helix",
+      expand = 0,
+      spec = {
+        { "<leader>b", group = "buffer" },
+        { "<leader>c", group = "code", mode = { "n", "v" } },
+        { "<leader>d", group = "debug" },
+        { "<leader>s", group = "search" },
+        { "<leader>u", group = "ui" },
+        { "<leader>g", group = "git" },
+        { "<leader>x", group = "session" },
+        { "<leader>m", icon = "󰇘 ", group = "misc", mode = { "n", "v" } },
+        { "<leader>ms", icon = "󰛔 ", desc = "Spectre", mode = { "n", "v" } },
+        { "<leader>l", "<CMD>Lazy<CR>", icon = "󰒲 ", desc = "Lazy" },
+        {
+          mode = { "v" },
+          { "<leader>h", group = "git hunk" },
+        },
+      },
+      icons = {
+        ---@type wk.IconRule[]
+        rules = {
+          { plugin = "alpha-nvim", icon = "󰨇 " },
+          { plugin = "tfm.nvim", icon = " " },
+          { plugin = "mason.nvim", icon = " " },
+        },
+      },
+    },
   },
 
   {

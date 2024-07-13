@@ -41,11 +41,3 @@ vim.keymap.set("n", "<leader>bD", function()
   vim.api.nvim_buf_delete(vim.api.nvim_get_current_buf(), { force = true })
   vim.notify("Closed buffer without saving", vim.log.levels.WARN)
 end, { desc = "Force close current buffer" })
-
-vim.keymap.set("n", "<leader>l", function()
-  require("lazy").show()
-end, { desc = "Lazy" })
-
-vim.keymap.set("n", "<leader>cm", function()
-  require("mason.ui").open()
-end, { desc = "Mason" })
