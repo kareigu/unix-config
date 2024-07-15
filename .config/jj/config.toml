@@ -6,8 +6,9 @@ email = "mail@karei.dev"
 default-command = "status"
 
 [signing]
-key = 
-
-[template-aliases]sign-all = true
+key = ""
+sign-all = true
 backend = "gpg"
+
+[template-aliases]
 'format_short_signature(signature)' = 'signature'
