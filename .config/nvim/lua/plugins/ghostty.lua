@@ -7,4 +7,13 @@ if vim.loop.os_uname().sysname == "Darwin" then
   }
 end
 
+if vim.loop.os_uname().sysname == "Linux" then
+  ---@type LazySpec
+  return {
+    dir = "/usr/local/share/vim/vimfiles/",
+    lazy = false,
+    cond = vim.fn.executable("ghostty") == 1,
+  }
+end
+
 return {}
