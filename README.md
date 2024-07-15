@@ -1,9 +1,9 @@
 # UNIX config files
 ## Configuration files for various UNIX applications
 
-* Alacritty
+* Ghostty
 * zsh
 * helix
 * neovim
-* git
+* jj
 * starship
