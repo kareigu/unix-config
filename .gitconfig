@@ -1,11 +1,11 @@
 [user]
-	email = eetu.kivelae@gmail.com
+	email = mail@karei.dev
 	name = karei
 	signingkey = 
 [pull]
-	rebase = false
+	rebase = true
 [core]
-	editor = hx
+	editor = nvim
 	pager = delta
 
 [interactive]
