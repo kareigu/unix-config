@@ -3,7 +3,7 @@ vim.g.maplocalleader = " "
 vim.opt.number = true
 vim.opt.mouse = "a"
 vim.opt.showmode = false
-vim.opt.clipboard = "unnamedplus"
+vim.opt.clipboard = "unnamed"
 vim.opt.breakindent = true
 vim.opt.wrap = true
 vim.opt.undofile = true
@@ -80,6 +80,10 @@ require("lazy").setup({
         { "<leader>m", icon = "󰇘 ", group = "misc", mode = { "n", "v" } },
         { "<leader>ms", icon = "󰛔 ", desc = "Spectre", mode = { "n", "v" } },
         { "<leader>l", "<CMD>Lazy<CR>", icon = "󰒲 ", desc = "Lazy" },
+        { "<leader>y", '"+y', icon = "y", desc = "Copy to clipboard" },
+        { "<leader>Y", '"+Y', icon = "Y", desc = "Copy line to clipboard" },
+        { "<leader>p", '"+p', icon = "p", desc = "Paste from clipboard after selection" },
+        { "<leader>P", '"+P', icon = "P", desc = "Paste from clipboard before selection" },
         {
           mode = { "v" },
           { "<leader>h", group = "git hunk" },
