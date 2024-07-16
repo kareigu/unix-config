@@ -11,6 +11,7 @@ zinit wait lucid for \
   atload"_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
   blockf atpull'zinit creinstall -q .' \
+  atload"source <(jj util completion zsh)" \
       zsh-users/zsh-completions
 
 zinit id-as"auto" for \
