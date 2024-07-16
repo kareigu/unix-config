@@ -1,14 +1,19 @@
-theme = "kanagawa"
+theme = "kanagawa-nvim"
 
 [editor]
 true-color = true
 auto-pairs = true
+auto-format = true
 cursorline = true
 color-modes = true
-bufferline = "multiple"
+rulers = [101]
+text-width = 100
+bufferline = "never"
 soft-wrap.enable = true
+soft-wrap.wrap-at-text-width = true
 lsp.display-inlay-hints = true
 lsp.display-messages = true
+smart-tab.supersede-menu = true
 
 [editor.cursor-shape]
 insert = "bar"
@@ -19,6 +24,6 @@ select = "underline"
 left = ["mode", "spinner", "file-name", "file-modification-indicator", "spacer", "diagnostics"]
 right = ["version-control", "selections", "position", "file-encoding"]
 #version-control-prefix = " "
-mode.normal = " NORMAL"
-mode.insert = " INSERT"
-mode.select = "ﭟ SELECT"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
