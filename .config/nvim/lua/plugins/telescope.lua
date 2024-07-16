@@ -29,6 +29,7 @@ return {
     { "<leader>sk", "<cmd>Telescope keymaps<CR>", desc = "Search keymaps" },
     { "<leader>sn", "<cmd>Telescope notify<CR>", desc = "Search notification history" },
     { "<leader>ss", "<cmd>Telescope builtin<CR>", desc = "Search select telescope" },
+    { "<leader>sj", "<cmd>Telescope jumplist<CR>", desc = "Search jumplist" },
     { "<leader>sw", "<cmd>Telescope grep_string<CR>", desc = "Search current word" },
     { "<leader>sg", "<cmd>Telescope live_grep<CR>", desc = "Search by grep" },
     { "<leader>sd", "<cmd>Telescope diagnostics<CR>", desc = "Search diagnostics" },
