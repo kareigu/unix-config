@@ -10,10 +10,13 @@ rulers = [101]
 text-width = 100
 bufferline = "never"
 soft-wrap.enable = true
-soft-wrap.wrap-at-text-width = true
 lsp.display-inlay-hints = true
 lsp.display-messages = true
 smart-tab.supersede-menu = true
+end-of-line-diagnostics = "hint"
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
 
 [editor.cursor-shape]
 insert = "bar"
@@ -21,9 +24,21 @@ normal = "block"
 select = "underline"
 
 [editor.statusline]
-left = ["mode", "spinner", "file-name", "file-modification-indicator", "spacer", "diagnostics"]
+left = [
+  "mode",
+  "spinner",
+  "file-name",
+  "file-modification-indicator",
+  "spacer",
+  "diagnostics",
+]
 right = ["version-control", "selections", "position", "file-encoding"]
 #version-control-prefix = " "
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
+
+[keys.normal.space.b]
+s = "buffer_picker"
+d = ":buffer-close"
+D = ":buffer-close!"
