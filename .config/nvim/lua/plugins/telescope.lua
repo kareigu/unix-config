@@ -32,6 +32,13 @@ return {
     { "<leader>sj", "<cmd>Telescope jumplist<CR>", desc = "Search jumplist" },
     { "<leader>sw", "<cmd>Telescope grep_string<CR>", desc = "Search current word" },
     { "<leader>sg", "<cmd>Telescope live_grep<CR>", desc = "Search by grep" },
+    {
+      "<leader>sG",
+      function()
+        require("telescope.builtin").live_grep({ cwd = require("telescope.utils").buffer_dir() })
+      end,
+      desc = "Search by grep (cwd)",
+    },
     { "<leader>sd", "<cmd>Telescope diagnostics<CR>", desc = "Search diagnostics" },
     { "<leader>sr", "<cmd>Telescope resume<CR>", desc = "Search resume" },
     { "<leader>s.", "<cmd>Telescope oldfiles<CR>", desc = "Search recent files" },
