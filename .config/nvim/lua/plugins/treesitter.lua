@@ -3,6 +3,8 @@ return {
   build = ":TSUpdate",
   event = { "BufReadPost", "BufNew", "VeryLazy" },
   cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+  ---@type TSConfig
+  ---@diagnostic disable: missing-fields
   opts = {
     ensure_installed = {
       "bash",
@@ -12,7 +14,6 @@ return {
       "html",
       "lua",
       "luadoc",
-      "markdown",
       "rust",
       "toml",
       "vim",
@@ -21,7 +22,7 @@ return {
       "zig",
     },
     auto_install = false,
-    highlight = { enable = true },
+    highlight = { enable = true, disable = { "markdown" } },
     indent = { enable = true },
   },
   config = function(_, opts)
