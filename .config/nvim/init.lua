@@ -77,6 +77,7 @@ require("lazy").setup({
         { "<leader>u", group = "ui" },
         { "<leader>g", group = "git" },
         { "<leader>x", group = "session" },
+        { "m", group = "surround", mode = { "n", "x" } },
         { "<leader>m", icon = "󰇘 ", group = "misc", mode = { "n", "v" } },
         { "<leader>ms", icon = "󰛔 ", desc = "Spectre", mode = { "n", "v" } },
         { "<leader>l", "<CMD>Lazy<CR>", icon = "󰒲 ", desc = "Lazy" },
