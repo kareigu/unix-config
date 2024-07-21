@@ -108,6 +108,8 @@ require("lazy").setup({
     opts = {
       compile = true,
       transparent = transparent,
+      keywordStyle = { italic = false },
+      commentStyle = { italic = false },
       ---@param colors KanagawaColors
       overrides = function(colors)
         local theme = colors.theme
