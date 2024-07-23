@@ -50,4 +50,20 @@ return {
       },
     },
   },
+  {
+    "julienvincent/hunk.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+    cmd = { "DiffEditor" },
+    opts = {
+      ui = {
+        tree = {
+          mode = "flat",
+        },
+        layout = "horizontal",
+      },
+    },
+    config = true,
+  },
 }
