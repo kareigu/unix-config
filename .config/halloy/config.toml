@@ -1,0 +1,29 @@
+# Halloy config.
+#
+# For a complete list of available options,
+# please visit https://halloy.squidowl.org/configuration/index.html
+theme = "kanagawa"
+
+[servers.libera]
+nickname = "kareigu"
+username = "kareigu/irc.libera.chat@pico.sh"
+server = "irc.pico.sh"
+password = ""
+channels = ["#halloy", "#neovim", "#zig", "#ghostty"]
+
+[buffer.channel.topic]
+enabled = true
+
+[font]
+family = "BerkeleyMono Nerd Font"
+size = 16
+
+[buffer.server_messages.join]
+smart = 60
+
+[buffer.server_messages.part]
+smart = 60
+
+[buffer.server_messages.quit]
+smart = 60
+
