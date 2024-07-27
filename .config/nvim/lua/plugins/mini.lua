@@ -34,11 +34,6 @@ return {
     },
   },
   {
-    "echasnovski/mini.pairs",
-    opts = {},
-    event = "InsertEnter",
-  },
-  {
 
     "echasnovski/mini.statusline",
     opts = {
