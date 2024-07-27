@@ -33,6 +33,9 @@ return {
     dependencies = {
       "MunifTanjim/nui.nvim",
     },
+    cond = function()
+      return vim.fn.executable("jj") == 1
+    end,
     cmd = { "DiffEditor" },
     opts = {
       ui = {
