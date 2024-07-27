@@ -78,7 +78,7 @@ require("lazy").setup({
         { "<leader>x", group = "session" },
         { "m", group = "surround", mode = { "n", "x" } },
         { "<leader>m", icon = "󰇘 ", group = "misc", mode = { "n", "v" } },
-        { "<leader>ms", icon = "󰛔 ", desc = "Spectre", mode = { "n", "v" } },
+        { "<leader>ms", icon = "󰛔 ", desc = "Search and replace", mode = { "n", "v" } },
         { "<leader>l", "<CMD>Lazy<CR>", icon = "󰒲 ", desc = "Lazy" },
         { "<leader>y", '"+y', icon = " ", desc = "Copy to clipboard" },
         { "<leader>Y", '"+Y', icon = " ", desc = "Copy line to clipboard" },
