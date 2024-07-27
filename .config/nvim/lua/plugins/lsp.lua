@@ -19,6 +19,7 @@ local misc_tools = {
   "shfmt",
 }
 
+---@type LazySpec
 return {
   {
     "williamboman/mason.nvim",
