@@ -92,9 +92,9 @@ require("lazy").setup({
       icons = {
         ---@type wk.IconRule[]
         rules = {
-          { plugin = "alpha-nvim", icon = "󰨇 " },
           { plugin = "tfm.nvim", icon = " " },
           { plugin = "mason.nvim", icon = " " },
+          { plugin = "dashboard-nvim", icon = "󰨇 " },
         },
       },
     },
@@ -150,91 +150,57 @@ require("lazy").setup({
   },
 
   {
-    "goolord/alpha-nvim",
+    "nvimdev/dashboard-nvim",
     event = "VimEnter",
     keys = {
       {
         "<leader>q",
-        function()
-          vim.cmd["Alpha"]()
-        end,
+        "<CMD>Dashboard<CR>",
         desc = "Dashboard",
       },
     },
-    config = function()
-      local alpha = require("alpha")
-      local dashboard = require("alpha.themes.dashboard")
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "alpha",
-        callback = function()
-          vim.cmd.setlocal("nofoldenable")
-          vim.b.ministatusline_disable = true
-        end,
-      })
+    opts = function()
+      local logo = [[
+                                                                                      
+                                                                                      
+                                                                                      
+                                                 __~~                                 
+                                             __@@@"@@L                                
+                                          ~[@@@@@!@g"@!L                              
+                                ,,~_ggg@@@@g[@@@@@@gg""                                
+                              |@@@@@@@@@@@@@[@@@@@BN"                                 
+                    ,gggg@@@@@@@@@@@@@@@@@@;@@@@@;@                                   
+                     """""[@@@@@@@@@@@@@F"|@@@@@|@"                      ,@,          
+                          "=@ggggggr===g_=4@@@P=                        |@@g,         
+                               '""""@@@@@f"""                  .       _@[@"'         
+                                 g@'  "@]                      *      gP'[=*          
+                                 ""     "_                     B'    @| L9"           
+               @_                  =___ __Tg=====__gggg_=g __   = : gg=               
+                "1 ',       ___,,,"''"""@@LJ@W"""""""""[@@@@@L""_ __"                 
+           mmmmm_____ggggdBBBBBBBBBT                          BBB@@@ggg_qg__          
+          __ """""    _,                                          '""@@@@@@"""@@___   
+                     @"!                                                  BBB@@~~BB   
+                    [""'                                                              
+                    ,.                                                                
+                                                                                      
+      ]]
 
-      dashboard.section.header.val = {
-        "                                                                              ",
-        "                                                                              ",
-        "                                                                              ",
-        "                                         __~~                                 ",
-        '                                     __@@@"@@L                                ',
-        '                                  ~[@@@@@!@g"@!L                              ',
-        '                        ,,~_ggg@@@@g[@@@@@@gg""                                ',
-        '                      |@@@@@@@@@@@@@[@@@@@BN"                                 ',
-        "            ,gggg@@@@@@@@@@@@@@@@@@;@@@@@;@                                   ",
-        '             """""[@@@@@@@@@@@@@F"|@@@@@|@"                      ,@,          ',
-        '                  "=@ggggggr===g_=4@@@P=                        |@@g,         ',
-        '                       \'""""@@@@@f"""                  .       _@[@"\'         ',
-        "                         g@'  \"@]                      *      gP'[=*          ",
-        '                         ""     "_                     B\'    @| L9"           ',
-        "       @_                  =___ __Tg=====__gggg_=g __   = : gg=               ",
-        '        "1 \',       ___,,,"\'\'"""@@LJ@W"""""""""[@@@@@L""_ __"                 ',
-        "   mmmmm_____ggggdBBBBBBBBBT                          BBB@@@ggg_qg__          ",
-        '  __ """""    _,                                          \'""@@@@@@"""@@___   ',
-        '             @"!                                                  BBB@@~~BB   ',
-        '            [""\'                                                              ',
-        "            ,.                                                                ",
-        "                                                                              ",
+      return {
+        theme = "doom",
+        hide = { statusline = false },
+        config = {
+          header = vim.split(logo, "\n"),
+          center = {
+            { key = "e", desc = "New file", action = "ene | startinsert", icon = " ", key_format = "%s" },
+            { key = "r", desc = "Recent", action = "Telescope oldfiles", icon = " ", key_format = "%s" },
+            { key = "s", desc = "Load last session", action = 'lua require("persistence").load()', icon = "󰱼 ", key_format = "%s" },
+            { key = "l", desc = "Lazy", action = "Lazy", icon = "󰒲 ", key_format = "%s" },
+            { key = "m", desc = "Mason", action = "Mason", icon = " ", key_format = "%s" },
+            { key = "c", desc = "Config", action = "e $MYVIMRC", icon = " ", key_format = "%s" },
+            { key = "q", desc = "Quit", action = "qa", icon = "󰅚 ", key_format = "%s" },
+          },
+        },
       }
-      dashboard.section.header.opts.hl = "PreProc"
-      dashboard.opts.layout = {
-        { type = "padding", val = 1 },
-        dashboard.section.header,
-        { type = "padding", val = 1 },
-        dashboard.section.buttons,
-        { type = "padding", val = 1 },
-        dashboard.section.footer,
-      }
-
-      dashboard.section.buttons.val = {
-        dashboard.button("e", "  󰫣 New file", ":ene <BAR> startinsert <CR>"),
-        dashboard.button("r", "  󰫣 Recent", ":Telescope oldfiles<CR>"),
-        dashboard.button("s", "󰱼  󰫣 Load last session", '<cmd>lua require("persistence").load({last = true})<CR>'),
-        dashboard.button("l", "󰒲  󰫣 Lazy", ":Lazy<CR>"),
-        dashboard.button("m", "  󰫣 Mason", ":Mason<CR>"),
-        dashboard.button("c", "  󰫣 Config", ":e $MYVIMRC | Tfm<CR>"),
-        dashboard.button("q", "󰅚  󰫣 Quit", ":qa<CR>"),
-      }
-      dashboard.section.buttons.opts.spacing = 0
-
-      alpha.setup(dashboard.opts)
-
-      vim.api.nvim_create_autocmd("User", {
-        once = true,
-        pattern = "LazyVimStarted",
-        callback = function()
-          local cwd = " " .. vim.fn.getcwd()
-          local stats = require("lazy").stats()
-          local plugins = " loaded " .. stats.loaded .. "/" .. stats.count .. " plugins"
-          local time = (math.floor(stats.startuptime * 100 + 0.5) / 100) .. "ms 󰚭"
-
-          dashboard.section.footer.val = {
-            cwd,
-            plugins .. " in " .. time,
-          }
-          pcall(vim.cmd.AlphaRedraw)
-        end,
-      })
     end,
   },
 
