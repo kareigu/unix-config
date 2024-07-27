@@ -29,27 +29,6 @@ return {
     end,
   },
   {
-    "rolv-apneseth/tfm.nvim",
-    lazy = false,
-    opts = {
-      file_manager = "yazi",
-      replace_netrw = true,
-      enable_cmds = true,
-      keybindings = {
-        ["<ESC>"] = "q",
-      },
-    },
-    keys = {
-      {
-        "<leader>e",
-        function()
-          require("tfm").open(nil, nil)
-        end,
-        desc = "TFM",
-      },
-    },
-  },
-  {
     "julienvincent/hunk.nvim",
     dependencies = {
       "MunifTanjim/nui.nvim",
