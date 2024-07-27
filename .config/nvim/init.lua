@@ -61,7 +61,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  { "tpope/vim-sleuth", event = "BufRead" },
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
