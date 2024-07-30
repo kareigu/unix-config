@@ -175,13 +175,6 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
     },
-    opts = function(_, opts)
-      opts.snippet = {
-        expand = function(args)
-          vim.snippet.expand(args.body)
-        end,
-      }
-    end,
     keys = {
       {
         "<C-L>",
@@ -243,6 +236,11 @@ return {
           { name = "snippets" },
           { name = "path" },
           { name = "buffer" },
+        },
+        snippet = {
+          expand = function(args)
+            vim.snippet.expand(args.body)
+          end,
         },
       })
     end,
