@@ -219,9 +219,75 @@ return {
         desc = "Jump to previous snippet placeholder",
       },
     },
-    config = function()
+    opts = {
+      icons = {
+        Text = { glyph = "󰉿", hl = "CmpItemKindText" },
+        Method = { glyph = "󰆧", hl = "CmpItemKindMethod" },
+        Function = { glyph = "󰊕", hl = "CmpItemKindFunction" },
+        Constructor = { glyph = "", hl = "CmpItemKindConstructor" },
+        Field = { glyph = "󰜢", hl = "CmpItemKindField" },
+        Variable = { glyph = "󰀫", hl = "CmpItemKindVariable" },
+        Class = { glyph = "󰠱", hl = "CmpItemKindClass" },
+        Interface = { glyph = "", hl = "CmpItemKindInterface" },
+        Module = { glyph = "", hl = "CmpItemKindModule" },
+        Property = { glyph = "󰜢", hl = "CmpItemKindProperty" },
+        Unit = { glyph = "󰑭", hl = "CmpItemKindUnit" },
+        Value = { glyph = "󰎠", hl = "CmpitemKindValue" },
+        Enum = { glyph = "", hl = "CmpItemKindEnum" },
+        Keyword = { glyph = "󰌋", hl = "CmpItemKindKeyword" },
+        Snippet = { glyph = "", hl = "CmpItemKindSnippet" },
+        Color = { glyph = "󰏘", hl = "CmpItemKindColor" },
+        File = { glyph = "󰈙", hl = "CmpItemKindFile" },
+        Reference = { glyph = "󰈇", hl = "CmpItemKindReference" },
+        Folder = { glyph = "󰉋", hl = "CmpItemKindFolder" },
+        EnumMember = { glyph = "", hl = "CmpItemKindEnumMember" },
+        Constant = { glyph = "󰏿", hl = "CmpItemKindConstant" },
+        Struct = { glyph = "󰙅", hl = "CmpItemKindStruct" },
+        Event = { glyph = "", hl = "CmpItemKindEvent" },
+        Operator = { glyph = "󰆕", hl = "CmpItemKindOperator" },
+        TypeParameter = { glyph = "", hl = "CmpItemKindTypeParameter" },
+        Package = { glyph = "", hl = "CmpItemKindModule" },
+        Namespace = { glyph = "", hl = "CmpItemKindModule" },
+        Key = { glyph = "󰌆", hl = "CmpitemKindValue" },
+        Array = { glyph = "", hl = "CmpItemKindStruct" },
+        Object = { glyph = "", hl = "CmpItemKindClass" },
+        Number = { glyph = "󰎠", hl = "CmpItemKindValue" },
+        Boolean = { glyph = "", hl = "CmpItemKindValue" },
+        String = { glyph = "", hl = "CmpItemKindValue" },
+        null = { glyph = "󰟢", hl = "CmpItemKindUnit" },
+      },
+    },
+    config = function(_, opts)
       local cmp = require("cmp")
       cmp.setup({
+        experimental = { ghost_text = true },
+        view = {
+          entries = { name = "custom", selection_order = "near_cursor" },
+        },
+        ---@diagnostic disable-next-line: missing-fields
+        formatting = {
+          fields = { "kind", "abbr", "menu" },
+          format = function(entry, vim_item)
+            local kind = opts.icons[vim_item.kind]
+            if kind == nil then
+              return vim_item
+            end
+
+            local detail = entry:get_completion_item().detail or ""
+            if detail == vim_item.kind:lower() then
+              detail = ""
+            end
+            if detail then
+              detail = detail .. " "
+            end
+
+            vim_item.menu = detail .. "(" .. vim_item.kind .. ")"
+            vim_item.menu_hl_group = kind.hl
+            vim_item.kind = kind.glyph or ""
+            vim_item.kind_hl_group = kind.hl
+            return vim_item
+          end,
+        },
         completion = { completeopt = "menu,menuone,noinsert" },
         mapping = cmp.mapping.preset.insert({
           ["<c-n>"] = cmp.mapping.select_next_item(),
