@@ -44,7 +44,7 @@ if vim.g.neovide then
 end
 
 require("config.keys")
-require("config.autocmd")
+require("config.cmds")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -196,7 +196,7 @@ require("lazy").setup({
             { key = "s", desc = "Load last session", action = 'lua require("persistence").load()', icon = "󰱼 ", key_format = "%s" },
             { key = "l", desc = "Lazy", action = "Lazy", icon = "󰒲 ", key_format = "%s" },
             { key = "m", desc = "Mason", action = "Mason", icon = " ", key_format = "%s" },
-            { key = "c", desc = "Config", action = "e $MYVIMRC", icon = " ", key_format = "%s" },
+            { key = "c", desc = "Config", action = "OpenConfig", icon = " ", key_format = "%s" },
             { key = "q", desc = "Quit", action = "qa", icon = "󰅚 ", key_format = "%s" },
           },
         },

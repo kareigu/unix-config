@@ -1,3 +1,8 @@
+vim.api.nvim_create_user_command("OpenConfig", function()
+  vim.fn.chdir(vim.fn.stdpath("config"))
+  vim.cmd.edit("$MYVIMRC")
+end, {})
+
 vim.api.nvim_create_autocmd("BufReadPost", {
   group = vim.api.nvim_create_augroup("krg_last_location", { clear = true }),
   callback = function(event)
