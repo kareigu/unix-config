@@ -262,7 +262,7 @@ return {
       cmp.setup({
         experimental = { ghost_text = true },
         view = {
-          entries = { name = "custom", selection_order = "near_cursor" },
+          entries = "native",
         },
         ---@diagnostic disable-next-line: missing-fields
         formatting = {
@@ -273,17 +273,9 @@ return {
               return vim_item
             end
 
-            local detail = entry:get_completion_item().detail or ""
-            if detail == vim_item.kind:lower() then
-              detail = ""
-            end
-            if detail then
-              detail = detail .. " "
-            end
-
-            vim_item.menu = detail .. "(" .. vim_item.kind .. ")"
+            vim_item.menu = "(" .. vim_item.kind .. ")"
             vim_item.menu_hl_group = kind.hl
-            vim_item.kind = kind.glyph or ""
+            vim_item.kind = " " .. (kind.glyph or "")
             vim_item.kind_hl_group = kind.hl
             return vim_item
           end,
