@@ -90,9 +90,9 @@ return {
           end
 
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-            vim.lsp.inlay_hint.enable(true)
+            vim.lsp.inlay_hint.enable(true, { bufnr = 0 })
             map("<leader>uh", function()
-              local enable = not vim.lsp.inlay_hint.is_enabled({})
+              local enable = not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
               vim.lsp.inlay_hint.enable(enable)
               vim.notify("Set inlay_hint: " .. tostring(enable), vim.log.levels.INFO, {})
             end, "Toggle inlay hints")
