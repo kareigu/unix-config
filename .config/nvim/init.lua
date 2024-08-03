@@ -31,7 +31,7 @@ vim.o.wildmode = "longest:full,full"
 local transparent = true
 if vim.g.neovide then
   vim.opt.guifont = "BerkeleyMono Nerd Font:h12"
-  if vim.loop.os_uname().sysname == "Darwin" then
+  if vim.uv.os_uname().sysname == "Darwin" then
     vim.g.neovide_window_blurred = true
     vim.g.neovide_transparency = 0.7
   end
@@ -46,7 +46,7 @@ require("config.keys")
 require("config.cmds")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",

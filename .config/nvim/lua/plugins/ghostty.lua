@@ -1,4 +1,4 @@
-if vim.loop.os_uname().sysname == "Darwin" then
+if vim.uv.os_uname().sysname == "Darwin" then
   ---@type LazySpec
   return {
     dir = "/Applications/Ghostty.app/Contents/Resources/vim/vimfiles/",
@@ -7,7 +7,7 @@ if vim.loop.os_uname().sysname == "Darwin" then
   }
 end
 
-if vim.loop.os_uname().sysname == "Linux" then
+if vim.uv.os_uname().sysname == "Linux" then
   ---@type LazySpec
   return {
     dir = "/usr/local/share/vim/vimfiles/",
