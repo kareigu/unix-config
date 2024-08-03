@@ -4,6 +4,8 @@ return {
   build = ":TSUpdate",
   event = { "BufReadPost", "BufNew", "VeryLazy" },
   cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+  main = "nvim-treesitter.configs",
+  ---@module "nvim-treesitter"
   ---@type TSConfig
   ---@diagnostic disable: missing-fields
   opts = {
@@ -26,7 +28,4 @@ return {
     highlight = { enable = true, disable = { "markdown" } },
     indent = { enable = true },
   },
-  config = function(_, opts)
-    require("nvim-treesitter.configs").setup(opts)
-  end,
 }
