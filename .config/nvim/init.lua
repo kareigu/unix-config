@@ -63,6 +63,7 @@ require("lazy").setup({
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
+    ---@module "which-key"
     ---@type wk.Opts
     opts = {
       preset = "helix",
@@ -102,6 +103,7 @@ require("lazy").setup({
   {
     "rebelot/kanagawa.nvim",
     priority = 1000,
+    ---@module "kanagawa"
     ---@type KanagawaConfig
     opts = {
       compile = true,
@@ -203,6 +205,12 @@ require("lazy").setup({
     end,
   },
 
+  {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = { library = { { path = "luvit-meta/library", words = { "vim%.uv" } } } },
+  },
+  { "Bilal2453/luvit-meta", lazy = true },
   {
     import = "plugins",
   },

@@ -41,7 +41,6 @@ return {
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
-      { "folke/neodev.nvim", opts = {} },
     },
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "LspInfo", "LspInstall", "LspUninstall" },
@@ -290,6 +289,7 @@ return {
           ["<C-k>"] = cmp.mapping.complete({}),
         }),
         sources = {
+          { name = "lazydev", group_index = 0 },
           { name = "nvim_lsp" },
           { name = "snippets" },
           { name = "path" },
