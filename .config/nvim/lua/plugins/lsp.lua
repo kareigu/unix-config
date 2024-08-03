@@ -138,7 +138,7 @@ return {
       {
         "<leader>cf",
         function()
-          require("conform").format({ async = true, lsp_fallback = true })
+          require("conform").format({ async = true, lsp_format = "fallback" })
         end,
         mode = "",
         desc = "Format buffer",
@@ -148,9 +148,18 @@ return {
       notify_on_error = true,
       format_on_save = function(bufnr)
         local disable_filetypes = {}
+        ---@type conform.LspFormatOpts
+        local lsp_format
+        if disable_filetypes[vim.bo[bufnr].filetype] then
+          lsp_format = "never"
+        else
+          lsp_format = "fallback"
+        end
+
+        ---@type conform.FormatOpts
         return {
           timeout_ms = 500,
-          lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+          lsp_format = lsp_format,
         }
       end,
       formatters_by_ft = {
