@@ -3,6 +3,7 @@ if vim.uv.os_uname().sysname == "Darwin" then
   return {
     dir = "/Applications/Ghostty.app/Contents/Resources/vim/vimfiles/",
     lazy = false,
+    name = "ghostty",
     cond = vim.fn.executable("ghostty") == 1,
   }
 end
@@ -12,6 +13,7 @@ if vim.uv.os_uname().sysname == "Linux" then
   return {
     dir = "/usr/local/share/vim/vimfiles/",
     lazy = false,
+    name = "ghostty",
     cond = vim.fn.executable("ghostty") == 1,
   }
 end
