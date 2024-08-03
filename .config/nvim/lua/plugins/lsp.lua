@@ -63,7 +63,7 @@ return {
           map("<leader>cl", vim.cmd["LspInfo"], "LSP info")
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client.server_capabilities.documentHighlightProvider then
+          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
             local highlight_augroup = vim.api.nvim_create_augroup("krg-lsp-highlight", { clear = false })
             vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
               buffer = event.buf,
@@ -89,8 +89,8 @@ return {
             })
           end
 
-          vim.lsp.inlay_hint.enable(true)
-          if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+            vim.lsp.inlay_hint.enable(true)
             map("<leader>uh", function()
               local enable = not vim.lsp.inlay_hint.is_enabled({})
               vim.lsp.inlay_hint.enable(enable)
