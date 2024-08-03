@@ -3,7 +3,6 @@ vim.g.maplocalleader = " "
 vim.opt.number = true
 vim.opt.mouse = "a"
 vim.opt.showmode = true
-vim.opt.clipboard = "unnamed"
 vim.opt.breakindent = true
 vim.opt.wrap = true
 vim.opt.undofile = true
