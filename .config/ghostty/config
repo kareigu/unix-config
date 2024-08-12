@@ -7,7 +7,7 @@ window-height = 48
 macos-titlebar-style = tabs
 
 background-opacity = 0.85
-background-blur-radius = 20
+background-blur-radius = 100
 
 cursor-style = underline
 shell-integration-features = no-cursor
@@ -15,6 +15,7 @@ shell-integration-features = no-cursor
 window-padding-x = 4
 window-padding-y = 4
 window-padding-balance = true
+window-padding-color = extend
 
 background = #1F1F28
 foreground = #DCD7BA
