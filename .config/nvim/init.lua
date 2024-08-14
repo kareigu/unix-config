@@ -92,7 +92,6 @@ require("lazy").setup({
       icons = {
         ---@type wk.IconRule[]
         rules = {
-          { plugin = "tfm.nvim", icon = " " },
           { plugin = "mason.nvim", icon = " " },
         },
       },
