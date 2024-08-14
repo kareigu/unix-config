@@ -75,7 +75,7 @@ require("lazy").setup({
         { "<leader>s", group = "search" },
         { "<leader>u", group = "ui" },
         { "<leader>g", group = "git" },
-        { "<leader>x", group = "session" },
+        { "<leader>q", group = "session" },
         { "m", group = "surround", mode = { "n", "x" } },
         { "<leader>m", icon = "󰇘 ", group = "misc", mode = { "n", "v" } },
         { "<leader>ms", icon = "󰛔 ", desc = "Search and replace", mode = { "n", "v" } },
@@ -94,7 +94,6 @@ require("lazy").setup({
         rules = {
           { plugin = "tfm.nvim", icon = " " },
           { plugin = "mason.nvim", icon = " " },
-          { plugin = "dashboard-nvim", icon = "󰨇 " },
         },
       },
     },
@@ -142,62 +141,6 @@ require("lazy").setup({
     end,
     build = ":KanagawaCompile",
   },
-
-  {
-    "nvimdev/dashboard-nvim",
-    event = "VimEnter",
-    keys = {
-      {
-        "<leader>q",
-        "<CMD>Dashboard<CR>",
-        desc = "Dashboard",
-      },
-    },
-    opts = function()
-      local logo = [[
-                                                                                      
-                                                                                      
-                                                                                      
-                                                 __~~                                 
-                                             __@@@"@@L                                
-                                          ~[@@@@@!@g"@!L                              
-                                ,,~_ggg@@@@g[@@@@@@gg""                                
-                              |@@@@@@@@@@@@@[@@@@@BN"                                 
-                    ,gggg@@@@@@@@@@@@@@@@@@;@@@@@;@                                   
-                     """""[@@@@@@@@@@@@@F"|@@@@@|@"                      ,@,          
-                          "=@ggggggr===g_=4@@@P=                        |@@g,         
-                               '""""@@@@@f"""                  .       _@[@"'         
-                                 g@'  "@]                      *      gP'[=*          
-                                 ""     "_                     B'    @| L9"           
-               @_                  =___ __Tg=====__gggg_=g __   = : gg=               
-                "1 ',       ___,,,"''"""@@LJ@W"""""""""[@@@@@L""_ __"                 
-           mmmmm_____ggggdBBBBBBBBBT                          BBB@@@ggg_qg__          
-          __ """""    _,                                          '""@@@@@@"""@@___   
-                     @"!                                                  BBB@@~~BB   
-                    [""'                                                              
-                    ,.                                                                
-                                                                                      
-      ]]
-
-      return {
-        theme = "doom",
-        hide = { statusline = false },
-        config = {
-          header = vim.split(logo, "\n"),
-          center = {
-            { key = "e", desc = "New file", action = "ene | startinsert", icon = " ", key_format = "%s" },
-            { key = "r", desc = "Recent", action = "FzfLua oldfiles", icon = " ", key_format = "%s" },
-            { key = "s", desc = "Load last session", action = 'lua require("persistence").load()', icon = "󰱼 ", key_format = "%s" },
-            { key = "l", desc = "Lazy", action = "Lazy", icon = "󰒲 ", key_format = "%s" },
-            { key = "m", desc = "Mason", action = "Mason", icon = " ", key_format = "%s" },
-            { key = "c", desc = "Config", action = "OpenConfig", icon = " ", key_format = "%s" },
-            { key = "q", desc = "Quit", action = "qa", icon = "󰅚 ", key_format = "%s" },
-          },
-        },
-      }
-    end,
-  },
-
   {
     "folke/lazydev.nvim",
     ft = "lua",

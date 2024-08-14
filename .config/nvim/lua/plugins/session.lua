@@ -5,7 +5,7 @@ return {
   opts = { options = vim.opt.sessionoptions:get() },
   keys = {
     {
-      "<leader>xr",
+      "<leader>qr",
       function()
         require("persistence").load()
         vim.notify("CWD session loaded", vim.log.levels.INFO)
@@ -13,7 +13,7 @@ return {
       desc = "Load session for current directory",
     },
     {
-      "<leader>xl",
+      "<leader>ql",
       function()
         require("persistence").load({ last = true })
         vim.notify("Last session loaded", vim.log.levels.INFO)
@@ -21,7 +21,7 @@ return {
       desc = "Load last session",
     },
     {
-      "<leader>xd",
+      "<leader>qd",
       function()
         require("persistence").stop()
         vim.notify("Disabled automatically saving session", vim.log.levels.INFO)
@@ -29,7 +29,7 @@ return {
       desc = "Don't automatically save current session",
     },
     {
-      "<leader>xD",
+      "<leader>qD",
       function()
         require("persistence").start()
         vim.notify("Automatically saving session", vim.log.levels.INFO)
@@ -37,7 +37,7 @@ return {
       desc = "Automatically save current session",
     },
     {
-      "<leader>xs",
+      "<leader>qs",
       function()
         require("persistence").save()
         vim.notify("Saved session", vim.log.levels.INFO)
