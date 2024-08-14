@@ -3,9 +3,9 @@ return {
   "lewis6991/gitsigns.nvim",
   event = { "BufReadPost", "BufNew" },
   keys = {
-    { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Search commits" },
-    { "<leader>gB", "<cmd>Telescope git_branches<CR>", desc = "Search branches" },
-    { "<leader>gf", "<cmd>Telescope git_files<CR>", desc = "Search branches" },
+    { "<leader>gc", "<cmd>FzfLua git_commits<CR>", desc = "Search commits" },
+    { "<leader>gB", "<cmd>FzfLua git_branches<CR>", desc = "Search branches" },
+    { "<leader>gf", "<cmd>FzfLua git_files<CR>", desc = "Search files" },
   },
   opts = {
     on_attach = function(bufnr)
