@@ -23,7 +23,7 @@ return {
     {
       "<leader>sG",
       function()
-        require("fzf-lua").live_grep({ cwd = vim.fn.expand("%:p:h") })
+        require("fzf-lua").live_grep_native({ cwd = vim.fn.expand("%:p:h") })
       end,
       desc = "Search by grep (cwd)",
     },
@@ -35,7 +35,7 @@ return {
     {
       "<leader>sc",
       function()
-        require("fzf-lua").live_grep({ cwd = vim.fn.stdpath("config") })
+        require("fzf-lua").files({ cwd = vim.fn.stdpath("config") })
       end,
       desc = "Search config files",
     },
