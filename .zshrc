@@ -30,7 +30,7 @@ export PATH=~/.local/bin:$PATH
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh --cmd cd)"
 export GPG_TTY=$(tty)
-export EDITOR=nvim
+export EDITOR='emacs -nw'
 export MANPAGER="sh -c 'col -xbf | bat -p -l man'"
 
 # git
