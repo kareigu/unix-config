@@ -17,6 +17,8 @@
 (setq c-basic-offset 4)
 (setq scroll-margin 10)
 
+(fset 'rainbow-delimiters-mode #'ignore)
+
 (+global-word-wrap-mode +1)
 
 (map! :desc "Next buffer" :n "L" #'next-buffer)
