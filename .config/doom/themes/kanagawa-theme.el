@@ -108,15 +108,15 @@
   (font-lock-regexp-grouping-backslash           (:foreground boatYellow2))
   (font-lock-keyword-face                        (:foreground oniViolet :weight 'semi-bold))
   (font-lock-warning-face                        (:foreground roninYellow))
-  (font-lock-string-face                         (:foreground springGreen :italic t))
+  (font-lock-string-face                         (:foreground springGreen))
   (font-lock-builtin-face                        (:foreground springBlue))
   (font-lock-reference-face                      (:foreground peachRed))
   (font-lock-constant-face                       (:foreground surimiOrange))
   (font-lock-function-name-face                  (:foreground crystalBlue))
   (font-lock-variable-name-face                  (:foreground waveRed))
   (font-lock-negation-char-face                  (:foreground peachRed))
-  (font-lock-comment-face                        (:foreground fujiGray :italic t))
-  (font-lock-comment-delimiter-face              (:foreground fujiGray :italic t))
+  (font-lock-comment-face                        (:foreground fujiGray))
+  (font-lock-comment-delimiter-face              (:foreground fujiGray))
   (font-lock-doc-face                            (:foreground comet))
   (font-lock-doc-markup-face                     (:foreground comet))
   (font-lock-preprocessor-face	                 (:foreground boatYellow2))
@@ -274,9 +274,9 @@
   (flycheck-error-list-warning                   (:foreground roninYellow :bold t))
   (flycheck-error-list-error                     (:foreground samuraiRed :bold t))
   (flycheck-error-list-info                      (:foreground waveAqua1 :bold t))
-  (flycheck-inline-error                         (:foreground samuraiRed :background winterRed :italic t :bold t :height 138))
-  (flycheck-inline-info                          (:foreground lightBlue :background winterBlue :italic t  :bold t :height 138))
-  (flycheck-inline-warning                       (:foreground winterYellow :background carpYellow :italic t :bold t :height 138))
+  (flycheck-inline-error                         (:foreground samuraiRed :background winterRed :bold t :height 138))
+  (flycheck-inline-info                          (:foreground lightBlue :background winterBlue :bold t :height 138))
+  (flycheck-inline-warning                       (:foreground winterYellow :background carpYellow :bold t :height 138))
 
   ;; indent dots
   (highlight-indent-guides-character-face        (:foreground sumiInk-3))
@@ -397,14 +397,14 @@
   (vertico-multiline                             (:background samuraiRed))
   (vertico-group-title                           (:background winterBlue :foreground lightBlue :bold t))
   (vertico-group-separator                       (:background winterBlue :foreground lightBlue :strike-through t))
-  (vertico-current                               (:foreground carpYellow :bold t :italic t :background waveBlue-1))
+  (vertico-current                               (:foreground carpYellow :bold t :background waveBlue-1))
 
   (vertico-posframe-border                       (:background sumiInk-3))
   (vertico-posframe                              (:background sumiInk-2))
   (orderless-match-face-0                        (:foreground crystalBlue :bold t))
 
   (comint-highlight-prompt                       (:background springViolet2 :foreground sumiInk-1))
-  (completions-annotations                       (:background nil :foreground dragonBlue :italic t))
+  (completions-annotations                       (:background nil :foreground dragonBlue))
 
   ;; hydra
   (hydra-face-amaranth                           (:foreground autumnRed))
