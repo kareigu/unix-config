@@ -11,8 +11,16 @@ server = "irc.pico.sh"
 password = ""
 channels = ["#halloy", "#neovim", "#zig", "#ghostty"]
 
+[sidebar]
+buffer_action = "replace-pane"
+unread_indicators = "dot"
+position = "top"
+
 [buffer.channel.topic]
 enabled = true
+
+[buffer.text_input]
+auto_format = "markdown"
 
 [font]
 family = "BerkeleyMono Nerd Font"
