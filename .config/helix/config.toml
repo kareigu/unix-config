@@ -27,16 +27,25 @@ select = "underline"
 left = [
   "mode",
   "spinner",
-  "file-name",
+  "total-line-numbers",
   "file-modification-indicator",
-  "spacer",
+  "file-name",
+  "position",
+  "position-percentage",
+]
+right = [
+  "register",
+  "selections",
+  "version-control",
+  "file-encoding",
+  "file-line-ending",
+  "file-type",
   "diagnostics",
 ]
-right = ["version-control", "selections", "position", "file-encoding"]
 #version-control-prefix = " "
-mode.normal = "NORMAL"
-mode.insert = "INSERT"
-mode.select = "SELECT"
+mode.normal = "N"
+mode.insert = "I"
+mode.select = "S"
 
 [keys.normal]
 H = "goto_previous_buffer"
