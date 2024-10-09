@@ -2,7 +2,7 @@ theme = "kanagawa-nvim"
 
 [editor]
 true-color = true
-auto-pairs = true
+auto-pairs = false
 auto-format = true
 cursorline = true
 color-modes = true
