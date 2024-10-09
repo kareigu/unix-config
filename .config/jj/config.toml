@@ -7,9 +7,9 @@ default-command = "status"
 diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
 
 [aliases]
-b = ["branch"]
-bm = ["branch", "move"]
-bu = ["branch", "move", "--to", "@-"]
+b = ["bookmark"]
+bm = ["bookmark", "move"]
+bu = ["bookmark", "move", "--to", "@-"]
 
 [signing]
 sign-all = true
