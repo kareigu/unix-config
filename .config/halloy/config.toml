@@ -38,3 +38,5 @@ smart = 60
 [buffer.server_messages.quit]
 smart = 60
 
+[buffer.server_messages.change_host]
+smart = 60
