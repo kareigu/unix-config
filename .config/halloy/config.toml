@@ -22,6 +22,9 @@ enabled = true
 [buffer.text_input]
 auto_format = "markdown"
 
+[buffer.timestamp]
+format = "%b %e - %X"
+
 [font]
 family = "BerkeleyMono Nerd Font"
 size = 16
