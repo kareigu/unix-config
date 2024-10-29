@@ -176,6 +176,8 @@ return {
               "filename",
               cond = conditions.buffer_not_empty,
               color = { fg = colours.filepath, gui = "bold" },
+              newfile_status = true,
+              path = 1,
             },
             { "location" },
             { "progress", color = { fg = colours.fg, gui = "bold" } },
