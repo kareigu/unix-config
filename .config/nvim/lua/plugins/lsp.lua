@@ -51,6 +51,7 @@ return {
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
+      "saghen/blink.cmp",
     },
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "LspInfo", "LspInstall", "LspUninstall" },
@@ -111,7 +112,7 @@ return {
       })
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+      capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
       require("mason").setup()
 
@@ -178,149 +179,56 @@ return {
       },
     },
   },
-
   {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
-    version = false,
+    "saghen/blink.cmp",
+    lazy = false,
+    version = "v0.*",
     dependencies = {
       {
         "garymjr/nvim-snippets",
-        opts = { friendly_snippets = true },
+        opts = {
+          create_autocmd = true,
+          create_cmp_source = false,
+          friendly_snippets = true,
+        },
       },
       "rafamadriz/friendly-snippets",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-    },
-    keys = {
-      {
-        "<C-L>",
-        function()
-          if vim.snippet.active({ direction = 1 }) then
-            vim.schedule(function()
-              vim.snippet.jump(1)
-            end)
-            return
-          end
-          return "<C-L>"
-        end,
-        expr = true,
-        silent = true,
-        mode = "i",
-        desc = "Jump to next snippet placeholder",
-      },
-      {
-        "<C-L>",
-        function()
-          vim.schedule(function()
-            vim.snippet.jump(1)
-          end)
-        end,
-        silent = true,
-        mode = "s",
-        desc = "Jump to next snippet placeholder",
-      },
-      {
-        "<C-H>",
-        function()
-          if vim.snippet.active({ direction = -1 }) then
-            vim.schedule(function()
-              vim.snippet.jump(-1)
-            end)
-          end
-          return "<C-H>"
-        end,
-        expr = true,
-        silent = true,
-        mode = { "i", "s" },
-        desc = "Jump to previous snippet placeholder",
-      },
     },
     opts = {
-      icons = {
-        Text = { glyph = "󰉿", hl = "CmpItemKindText" },
-        Method = { glyph = "󰆧", hl = "CmpItemKindMethod" },
-        Function = { glyph = "󰊕", hl = "CmpItemKindFunction" },
-        Constructor = { glyph = "", hl = "CmpItemKindConstructor" },
-        Field = { glyph = "󰜢", hl = "CmpItemKindField" },
-        Variable = { glyph = "󰀫", hl = "CmpItemKindVariable" },
-        Class = { glyph = "󰠱", hl = "CmpItemKindClass" },
-        Interface = { glyph = "", hl = "CmpItemKindInterface" },
-        Module = { glyph = "", hl = "CmpItemKindModule" },
-        Property = { glyph = "󰜢", hl = "CmpItemKindProperty" },
-        Unit = { glyph = "󰑭", hl = "CmpItemKindUnit" },
-        Value = { glyph = "󰎠", hl = "CmpitemKindValue" },
-        Enum = { glyph = "", hl = "CmpItemKindEnum" },
-        Keyword = { glyph = "󰌋", hl = "CmpItemKindKeyword" },
-        Snippet = { glyph = "", hl = "CmpItemKindSnippet" },
-        Color = { glyph = "󰏘", hl = "CmpItemKindColor" },
-        File = { glyph = "󰈙", hl = "CmpItemKindFile" },
-        Reference = { glyph = "󰈇", hl = "CmpItemKindReference" },
-        Folder = { glyph = "󰉋", hl = "CmpItemKindFolder" },
-        EnumMember = { glyph = "", hl = "CmpItemKindEnumMember" },
-        Constant = { glyph = "󰏿", hl = "CmpItemKindConstant" },
-        Struct = { glyph = "󰙅", hl = "CmpItemKindStruct" },
-        Event = { glyph = "", hl = "CmpItemKindEvent" },
-        Operator = { glyph = "󰆕", hl = "CmpItemKindOperator" },
-        TypeParameter = { glyph = "", hl = "CmpItemKindTypeParameter" },
-        Package = { glyph = "", hl = "CmpItemKindModule" },
-        Namespace = { glyph = "", hl = "CmpItemKindModule" },
-        Key = { glyph = "󰌆", hl = "CmpitemKindValue" },
-        Array = { glyph = "", hl = "CmpItemKindStruct" },
-        Object = { glyph = "", hl = "CmpItemKindClass" },
-        Number = { glyph = "󰎠", hl = "CmpItemKindValue" },
-        Boolean = { glyph = "", hl = "CmpItemKindValue" },
-        String = { glyph = "", hl = "CmpItemKindValue" },
-        null = { glyph = "󰟢", hl = "CmpItemKindUnit" },
+      keymap = {
+        preset = "default",
+        ["<CR>"] = { "accept", "fallback" },
+        ["<C-K>"] = { "show_documentation", "hide_documentation" },
+        ["<C-L>"] = { "snippet_forward", "fallback" },
+        ["<C-H>"] = { "snippet_backward", "fallback" },
+        ["<Tab>"] = { "fallback" },
+        ["<S-Tab>"] = { "fallback" },
+      },
+      appearance = {
+        use_nvim_cmp_as_default = true,
+        nerd_font_variant = "mono",
+      },
+      completion = {
+        menu = {
+          draw = {
+            treesitter = { "lsp" },
+          },
+        },
+        sources = {
+          default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+        },
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 200,
+        },
+        ghost_text = {
+          enabled = true,
+        },
+        signature = {
+          enabled = true,
+        },
       },
     },
-    config = function(_, opts)
-      local cmp = require("cmp")
-      cmp.setup({
-        experimental = { ghost_text = true },
-        view = {
-          entries = "native",
-        },
-        ---@diagnostic disable-next-line: missing-fields
-        formatting = {
-          fields = { "kind", "abbr", "menu" },
-          format = function(entry, vim_item)
-            local kind = opts.icons[vim_item.kind]
-            if kind == nil then
-              return vim_item
-            end
-
-            vim_item.menu = "(" .. vim_item.kind .. ")"
-            vim_item.menu_hl_group = kind.hl
-            vim_item.kind = " " .. (kind.glyph or "")
-            vim_item.kind_hl_group = kind.hl
-            return vim_item
-          end,
-        },
-        completion = { completeopt = "menu,menuone,noinsert" },
-        mapping = cmp.mapping.preset.insert({
-          ["<c-n>"] = cmp.mapping.select_next_item(),
-          ["<c-p>"] = cmp.mapping.select_prev_item(),
-          ["<c-b>"] = cmp.mapping.scroll_docs(-4),
-          ["<c-f>"] = cmp.mapping.scroll_docs(4),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
-          ["<C-k>"] = cmp.mapping.complete({}),
-        }),
-        sources = {
-          { name = "lazydev", group_index = 0 },
-          { name = "nvim_lsp" },
-          { name = "snippets" },
-          { name = "path" },
-          { name = "buffer" },
-        },
-        snippet = {
-          expand = function(args)
-            vim.snippet.expand(args.body)
-          end,
-        },
-      })
-    end,
   },
   {
     "hedyhli/outline.nvim",
