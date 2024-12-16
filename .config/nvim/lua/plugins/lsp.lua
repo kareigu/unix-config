@@ -111,9 +111,6 @@ return {
         end,
       })
 
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
-
       require("mason").setup()
 
       ---@type string[]
@@ -122,6 +119,7 @@ return {
         if server_opts.mason == true then
           ensure_installed[#ensure_installed + 1] = server
         else
+          server_opts.capabilities = require("blink.cmp").get_lsp_capabilities(server_opts.capabilities)
           require("lspconfig")[server].setup(server_opts)
         end
       end
@@ -133,7 +131,7 @@ return {
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
-            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+            server.capabilities = require("blink.cmp").get_lsp_capabilities(server.capabilities)
             require("lspconfig")[server_name].setup(server)
           end,
         },
