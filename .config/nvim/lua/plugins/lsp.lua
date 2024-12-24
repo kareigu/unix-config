@@ -206,24 +206,25 @@ return {
         use_nvim_cmp_as_default = true,
         nerd_font_variant = "mono",
       },
+      signature = {
+        enabled = true,
+      },
+      sources = {
+        default = { "lsp", "path", "snippets", "buffer" },
+        cmdline = {},
+      },
       completion = {
         menu = {
           draw = {
             treesitter = { "lsp" },
           },
         },
-        sources = {
-          default = { "lazydev", "lsp", "path", "snippets", "buffer" },
-        },
         documentation = {
           auto_show = true,
           auto_show_delay_ms = 200,
         },
         ghost_text = {
-          enabled = true,
-        },
-        signature = {
-          enabled = true,
+          enabled = false,
         },
       },
     },
