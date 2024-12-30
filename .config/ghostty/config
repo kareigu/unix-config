@@ -6,6 +6,11 @@ window-width = 150
 window-height = 48
 macos-titlebar-style = tabs
 
+macos-icon = custom-style
+macos-icon-frame = beige
+macos-icon-ghost-color = #FF5D62
+macos-icon-screen-color = #1F1F28
+
 background-opacity = 0.85
 background-blur-radius = 100
 
