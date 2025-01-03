@@ -30,13 +30,17 @@ vim.o.wildmode = "longest:full,full"
 
 local transparent = true
 if vim.g.neovide then
-  vim.opt.guifont = "BerkeleyMono Nerd Font:h12"
+  vim.opt.guifont = "TX-02,Symbols Nerd Font Mono:h12"
   if vim.uv.os_uname().sysname == "Darwin" then
     vim.g.neovide_window_blurred = true
     vim.g.neovide_transparency = 0.7
   end
+  if vim.uv.os_uname().sysname == "Windows_NT" then
+    vim.g.neovide_title_background_color = "#1F1F28"
+  end
   vim.g.neovide_floating_shadow = true
   vim.g.neovide_floating_z_height = 10
+  vim.g.neovide_floating_corner_radius = 0.5
   vim.g.neovide_light_angle_degrees = 45
   vim.g.neovide_light_radius = 5
   transparent = false
