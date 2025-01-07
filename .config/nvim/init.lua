@@ -60,22 +60,18 @@ if not vim.uv.fs_stat(lazypath) then
     lazypath,
   })
 end
----@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
-    ---@module "which-key"
-    ---@type wk.Opts
     opts = {
       preset = "helix",
       expand = 0,
       spec = {
         { "<leader>b", group = "buffer" },
         { "<leader>c", group = "code", mode = { "n", "v" } },
-        { "<leader>d", group = "debug" },
         { "<leader>s", group = "search" },
         { "<leader>u", group = "ui" },
         { "<leader>g", group = "git" },
@@ -83,19 +79,13 @@ require("lazy").setup({
         { "<leader>m", icon = "󰇘 ", group = "misc", mode = { "n", "v" } },
         { "<leader>ms", icon = "󰛔 ", desc = "Search and replace", mode = { "n", "v" } },
         { "<leader>l", "<CMD>Lazy<CR>", icon = "󰒲 ", desc = "Lazy" },
-        { "<leader>y", '"+y', icon = " ", desc = "Copy to clipboard" },
+        { "<leader>y", '"+y', icon = " ", desc = "Copy to clipboard", mode = { "n", "x", "v", "t" } },
         { "<leader>Y", '"+Y', icon = " ", desc = "Copy line to clipboard" },
         { "<leader>p", '"+p', icon = " ", desc = "Paste from clipboard after selection" },
         { "<leader>P", '"+P', icon = " ", desc = "Paste from clipboard before selection" },
         {
           mode = { "v" },
-          { "<leader>h", group = "git hunk" },
-        },
-      },
-      icons = {
-        ---@type wk.IconRule[]
-        rules = {
-          { plugin = "mason.nvim", icon = " " },
+          { "<leader>g", group = "git hunk" },
         },
       },
     },
@@ -104,14 +94,11 @@ require("lazy").setup({
   {
     "rebelot/kanagawa.nvim",
     priority = 1000,
-    ---@module "kanagawa"
-    ---@type KanagawaConfig
     opts = {
       compile = true,
       transparent = transparent,
       keywordStyle = { italic = false },
       commentStyle = { italic = false },
-      ---@param colors KanagawaColors
       overrides = function(colors)
         local theme = colors.theme
         return {
@@ -143,12 +130,6 @@ require("lazy").setup({
     end,
     build = ":KanagawaCompile",
   },
-  {
-    "folke/lazydev.nvim",
-    ft = "lua",
-    opts = { library = { { path = "luvit-meta/library", words = { "vim%.uv" } } } },
-  },
-  { "Bilal2453/luvit-meta", lazy = true },
   {
     import = "plugins",
   },

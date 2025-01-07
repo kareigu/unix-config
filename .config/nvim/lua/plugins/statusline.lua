@@ -14,64 +14,6 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
-    dependencies = {
-      {
-        "linrongbin16/lsp-progress.nvim",
-        ---@type lsp_progress.Configs
-        opts = {
-          series_format = function(title, message, percentage, done)
-            local postfix = ""
-            if percentage ~= nil then
-              postfix = string.format(" [%d%%]", percentage)
-            end
-            if done or percentage == 100 then
-              postfix = "  "
-            end
-
-            local checked_title = title or ""
-            local checked_message = message or ""
-
-            return {
-              postfix = postfix,
-              message = string.format("%s %s", checked_title, checked_message),
-            }
-          end,
-          client_format = function(client_name, spinner, series_messages)
-            if #series_messages == 0 then
-              return nil
-            end
-            return {
-              spinner = spinner,
-              name = client_name,
-              postfix = series_messages[#series_messages].postfix,
-              message = series_messages[#series_messages].message,
-            }
-          end,
-          format = function(client_messages)
-            if #client_messages == 0 then
-              return ""
-            end
-
-            local message = client_messages[#client_messages]
-
-            local max_message_length = 32
-            local winwidth = vim.fn.winwidth(0)
-            if winwidth ~= -1 then
-              max_message_length = winwidth / 3
-            end
-            local abbr_message = message.message
-            if abbr_message:len() > max_message_length then
-              local left = abbr_message:sub(0, max_message_length / 2 - 1)
-              local right = abbr_message:sub(abbr_message:len() - max_message_length / 2 - 1)
-              abbr_message = left .. "..." .. right
-            end
-
-            return string.format("[%s] %s%s %s", message.name, abbr_message, message.postfix, message.spinner)
-          end,
-        },
-        config = true,
-      },
-    },
     init = function()
       vim.g.lualine_laststatus = vim.o.laststatus
       if vim.fn.argc(-1) > 0 then
@@ -85,7 +27,6 @@ return {
         bg = get_colour("StatusLine", "bg"),
         fg = get_colour("StatusLine", "fg"),
         inactive = get_colour("StatusLineNC", "fg"),
-        bar = get_colour("MiniIconsRed", "fg"),
         filepath = get_colour("MiniStatuslineFilename", "fg"),
         fileinfo = get_colour("MiniStatuslineFileinfo", "fg"),
         vcs = get_colour("SpecialKey", "fg"),
@@ -132,14 +73,7 @@ return {
           lualine_c = {
             {
               function()
-                return "▊"
-              end,
-              color = { fg = colours.bar }, -- Sets highlighting of component
-              padding = { left = 0, right = 1 }, -- We don't need space before this
-            },
-            {
-              function()
-                return " "
+                return "  "
               end,
               color = function()
                 local mode_color = {
@@ -183,7 +117,6 @@ return {
             { "progress", color = { fg = colours.fg, gui = "bold" } },
           },
           lualine_x = {
-            require("lsp-progress").progress,
             {
               "o:encoding",
               fmt = string.upper,
@@ -205,17 +138,6 @@ return {
               "filetype",
               icons_enabled = true,
               color = { fg = colours.fileinfo, gui = "bold" },
-            },
-
-            {
-              "diagnostics",
-              sources = { "nvim_diagnostic" },
-              symbols = { error = " ", warn = " ", info = " " },
-              diagnostics_color = {
-                error = { fg = colours.error },
-                warn = { fg = colours.warn },
-                info = { fg = colours.info },
-              },
             },
           },
         },
