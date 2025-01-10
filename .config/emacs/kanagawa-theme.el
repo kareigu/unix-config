@@ -513,3 +513,4 @@
 
 (provide-theme 'kanagawa)
 ;;; kanagawa-theme.el ends here
+
