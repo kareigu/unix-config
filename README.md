@@ -1,9 +1,3 @@
-# UNIX config files
-## Configuration files for various UNIX applications
+# UNIX config
 
-* Ghostty
-* zsh
-* helix
-* neovim
-* jj
-* starship
+Configuration files for various UNIX applications
