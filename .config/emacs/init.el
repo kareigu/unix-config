@@ -143,12 +143,12 @@
 (use-package corfu
   :ensure t
   :init
+  (setq corfu-auto t)
+  (global-corfu-mode)
   (define-key corfu-map (kbd "C-n") 'corfu-next)
   (define-key corfu-map (kbd "C-p") 'corfu-previous)
   (define-key corfu-map (kbd "C-l") 'corfu-insert)
-  (define-key corfu-map (kbd "C-e") 'corfu-reset)
-  (setq corfu-auto t)
-  (global-corfu-mode))
+  (define-key corfu-map (kbd "C-e") 'corfu-reset))
 (use-package cape
   :ensure t
   :bind ("C-c p" . cape-prefix-map)
@@ -214,4 +214,3 @@
   (enable-recursive-minibuffers t)
   (tab-always-indent 'complete)
   (read-extended-command-predicate #'command-completion-default-include-p))
-
