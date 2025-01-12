@@ -19,13 +19,13 @@ style = "bold green"
 
 [custom.jj]
 command = '''
-jj log -r@ -l1 --ignore-working-copy --no-graph --color always  -T '
+jj log -r@ -n1 --ignore-working-copy --no-graph --color always  -T '
   separate("",
     coalesce(
       if(hidden, "hidden"),
       if(divergent, "divergent"),
       if(conflict, "conflict"),
-      branches.map(|x| if(
+      bookmarks.map(|x| if(
           x.name().substr(0, 10).starts_with(x.name()),
           x.name().substr(0, 10),
           x.name().substr(0, 9) ++ "…")
