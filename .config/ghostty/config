@@ -2,6 +2,7 @@ font-family = "TX-02"
 window-title-font-family = "TX-02"
 
 window-colorspace = display-p3
+text-blending = linear-corrected
 window-width = 150
 window-height = 48
 macos-titlebar-style = tabs
