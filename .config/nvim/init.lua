@@ -30,7 +30,7 @@ vim.o.wildmode = "longest:full,full"
 
 local transparent = true
 if vim.g.neovide then
-  vim.opt.guifont = "TX-02,Symbols Nerd Font Mono:h12"
+  vim.opt.guifont = "TX-02,Symbols Nerd Font Mono:h13:#e-subpixelantialias:#h-none"
   if vim.uv.os_uname().sysname == "Darwin" then
     vim.g.neovide_window_blurred = true
     vim.g.neovide_transparency = 0.7
