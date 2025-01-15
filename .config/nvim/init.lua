@@ -35,9 +35,7 @@ if vim.g.neovide then
     vim.g.neovide_window_blurred = true
     vim.g.neovide_transparency = 0.7
   end
-  if vim.uv.os_uname().sysname == "Windows_NT" then
-    vim.g.neovide_title_background_color = "#1F1F28"
-  end
+  vim.g.neovide_title_background_color = "#1F1F28"
   vim.g.neovide_floating_shadow = true
   vim.g.neovide_floating_z_height = 10
   vim.g.neovide_floating_corner_radius = 0.5
