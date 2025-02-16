@@ -2,7 +2,7 @@ font-family = "TX-02"
 window-title-font-family = "TX-02"
 
 window-colorspace = display-p3
-text-blending = linear-corrected
+alpha-blending = linear-corrected
 window-width = 150
 window-height = 48
 macos-titlebar-style = tabs
@@ -13,7 +13,7 @@ macos-icon-ghost-color = #FF5D62
 macos-icon-screen-color = #1F1F28
 
 background-opacity = 0.85
-background-blur-radius = 100
+background-blur = 100
 
 cursor-style = underline
 shell-integration-features = no-cursor
