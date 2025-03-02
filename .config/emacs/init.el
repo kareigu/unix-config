@@ -2,7 +2,7 @@
 ;;;;;;;;;;;
 ;; UTILS ;;
 ;;;;;;;;;;;
-(defun conf-dir(path) (concat user-emacs-directory path))
+(defun conf-dir(path) (concat (expand-file-name user-emacs-directory) path))
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; REROUTE CUSTOM ;;
