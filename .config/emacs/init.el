@@ -3,6 +3,11 @@
 ;; UTILS ;;
 ;;;;;;;;;;;
 (defun conf-dir(path) (concat (expand-file-name user-emacs-directory) path))
+(defun temp-dir(path)
+  (let ((temp-dir (concat (expand-file-name temporary-file-directory) path)))
+    (unless (file-exists-p temp-dir)
+      (make-directory temp-dir))
+    temp-dir))
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; REROUTE CUSTOM ;;
@@ -28,7 +33,10 @@
 (setq inhibit-splash-screen t)
 (setq initial-scratch-message nil)
 (setq ring-bell-function 'ignore)
-(setq backup-directory-alist '(("." . (conf-dir "backup/"))))
+(let ((temp-dir (temp-dir "emacs/")))
+  (setq backup-directory-alist `((".*" . ,temp-dir)))
+  (setq auto-save-file-name-transforms `((".*" ,temp-dir t)))
+  (setq lock-file-name-transforms `((".*" ,temp-dir t))))
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq c-basic-offset 4)
