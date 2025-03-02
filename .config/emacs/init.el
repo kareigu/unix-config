@@ -42,6 +42,8 @@
 (setq c-basic-offset 4)
 (setq scroll-margin 10)
 (setq select-enable-clipboard nil)
+(setq evil-normal-state-cursor 'hbar)
+(setq evil-visual-state-cursor 'hbar)
 
 ;;;;;;;;;;;;;;;;
 ;; APPEARANCE ;;
@@ -53,7 +55,6 @@
   :ensure t)
 (load-file (conf-dir "kanagawa-theme.el"))
 (load-theme 'kanagawa)
-
 
 ;;;;;;;;;;;;;;;;;
 ;; EVIL CONFIG ;;
