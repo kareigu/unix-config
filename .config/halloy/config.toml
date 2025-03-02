@@ -6,10 +6,11 @@ theme = "kanagawa"
 
 [servers.libera]
 nickname = "kareigu"
-username = "kareigu/irc.libera.chat@pico.sh"
-server = "irc.pico.sh"
+username = "kareigu/irc.libera.chat"
+server = "conn.karei.dev"
 password = ""
 channels = ["#halloy", "#neovim", "#zig", "#ghostty"]
+dangerously_accept_invalid_certs = true
 
 [sidebar]
 buffer_action = "replace-pane"
@@ -26,7 +27,7 @@ auto_format = "markdown"
 format = "%b %e - %X"
 
 [font]
-family = "BerkeleyMono Nerd Font"
+family = "TX-02"
 size = 16
 
 [buffer.server_messages.join]
