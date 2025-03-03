@@ -37,9 +37,7 @@
 (let ((temp-dir (temp-dir "emacs/")))
   (setq backup-directory-alist `((".*" . ,temp-dir)))
   (setq auto-save-file-name-transforms `((".*" ,temp-dir t)))
-  (setq lock-file-name-transforms `((".*" ,temp-dir t)))
-  (setq desktop-path `(,temp-dir)))
-(desktop-save-mode 1)
+  (setq lock-file-name-transforms `((".*" ,temp-dir t))))
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq c-basic-offset 4)
@@ -227,3 +225,46 @@
   (enable-recursive-minibuffers t)
   (tab-always-indent 'complete)
   (read-extended-command-predicate #'command-completion-default-include-p))
+
+;;;;;;;;;;;;;;;;;;;;
+;; PERSIST VALUES ;;
+;;;;;;;;;;;;;;;;;;;;
+
+(defcustom krg-persist-file-name ".emacs.persist"
+  "Filename for persist-file."
+  :type 'string)
+(defun krg-persist-file ()
+  "Returns expanded path to current persist-file.
+Filename for the file can be set using ‘krg-persist-file-name'."
+  (conf-dir krg-persist-file-name))
+
+(defun krg-save-persist-file ()
+  "Save persist-file on disk at location defined by \\[krg-persist-file]."
+  (let ((frame-left (frame-parameter (selected-frame) 'left))
+        (frame-top (frame-parameter (selected-frame) 'top))
+        (frame-width (frame-parameter (selected-frame) 'width))
+        (frame-height (frame-parameter (selected-frame) 'height))
+        (persist-file (krg-persist-file)))
+    (with-temp-buffer
+      (make-local-variable 'make-backup-files)
+      (setq make-backup-files nil)
+      (insert
+       ";;; " krg-persist-file-name " -*- lexical-binding: t; -*-\n"
+       ";;; " (current-time-string) " " (nth 1 (current-time-zone)) ".\n"
+       "(setq initial-frame-alist '(\n"
+       (format "  (top . %d)\n" (max frame-top 0))
+       (format "  (left . %d)\n" (max frame-left 0))
+       (format "  (width . %d)\n" (max frame-width 0))
+       (format "  (height . %d)))\n" (max frame-height 0)))
+      (when (file-writable-p persist-file)
+        (write-file persist-file)))))
+
+(defun krg-load-persist-file ()
+  "Load persisted settings from the file location defined by \\[krg-persist-file]."
+  (let ((persist-file (krg-persist-file)))
+    (when (file-readable-p persist-file)
+      (load-file persist-file))))
+
+(when window-system
+  (add-hook 'after-init-hook 'krg-load-persist-file)
+  (add-hook 'kill-emacs-hook 'krg-save-persist-file))
