@@ -38,7 +38,8 @@
 (let ((temp-dir (temp-dir "emacs/")))
   (setq backup-directory-alist `((".*" . ,temp-dir)))
   (setq auto-save-file-name-transforms `((".*" ,temp-dir t)))
-  (setq lock-file-name-transforms `((".*" ,temp-dir t))))
+  (setq lock-file-name-transforms `((".*" ,temp-dir t)))
+  (setq desktop-path `(,temp-dir)))
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq c-basic-offset 4)
@@ -77,6 +78,8 @@
         (kill-buffer elt))))
   (defun search-configs() (interactive) (consult-fd (conf-dir) "init.el"))
   (defun grep-current-word() (interactive) (consult-ripgrep nil (current-word)))
+  (defun save-session() (interactive) (desktop-save (car desktop-path) t))
+  (defun load-session() (interactive) (desktop-read (car desktop-path)))
   :config
   (evil-mode 1)
   (evil-define-operator yank-to-plus-register (beg end &optional type register yank-handler)
@@ -115,6 +118,8 @@
     (kbd "<leader>gr") 'git-gutter:revert-hunk
     (kbd "<leader>gu") 'git-gutter
     (kbd "<leader>mu") 'toggle-frame-maximized
+    (kbd "<leader>qs") 'save-session
+    (kbd "<leader>ql") 'load-session
     (kbd "[c") 'git-gutter:previous-hunk
     (kbd "]c") 'git-gutter:next-hunk
     (kbd "L") 'evil-next-buffer
@@ -226,6 +231,7 @@
 
 
 (use-package emacs
+  :hook (kill-emacs . save-session)
   :custom
   (enable-recursive-minibuffers t)
   (tab-always-indent 'complete)
