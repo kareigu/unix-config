@@ -2,9 +2,9 @@
 ;;;;;;;;;;;
 ;; UTILS ;;
 ;;;;;;;;;;;
-(defun conf-dir(path) (concat (expand-file-name user-emacs-directory) path))
+(defun conf-dir(path) (expand-file-name path user-emacs-directory))
 (defun temp-dir(path)
-  (let ((temp-dir (concat (expand-file-name temporary-file-directory) path)))
+  (let ((temp-dir (expand-file-name path temporary-file-directory)))
     (unless (file-exists-p temp-dir)
       (make-directory temp-dir))
     temp-dir))
