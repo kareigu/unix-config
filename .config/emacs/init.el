@@ -30,6 +30,7 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (global-display-line-numbers-mode 1)
+(prefer-coding-system 'utf-8-unix)
 (setq inhibit-splash-screen t)
 (setq initial-scratch-message nil)
 (setq ring-bell-function 'ignore)
