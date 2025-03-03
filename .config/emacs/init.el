@@ -76,6 +76,7 @@
         (message "Closing " (buffer-name elt))
         (kill-buffer elt))))
   (defun search-configs() (interactive) (consult-fd (conf-dir) "init.el"))
+  (defun grep-current-word() (interactive) (consult-ripgrep nil (current-word)))
   :config
   (evil-mode 1)
   (evil-define-operator yank-to-plus-register (beg end &optional type register yank-handler)
@@ -101,6 +102,7 @@
     (kbd "<leader>cf") 'format-all-buffer
     (kbd "<leader>cF") 'format-all-region
     (kbd "<leader>sg") 'consult-ripgrep
+    (kbd "<leader>sw") 'grep-current-word
     (kbd "<leader>sf") 'consult-fd
     (kbd "<leader>sb") 'consult-line
     (kbd "<leader>sB") 'consult-line-multi
