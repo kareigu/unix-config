@@ -75,6 +75,7 @@
       (when (not (eql elt (current-buffer)))
         (message "Closing " (buffer-name elt))
         (kill-buffer elt))))
+  (defun search-configs() (interactive) (consult-fd (conf-dir) "init.el"))
   :config
   (evil-mode 1)
   (evil-define-operator yank-to-plus-register (beg end &optional type register yank-handler)
@@ -103,6 +104,7 @@
     (kbd "<leader>sf") 'consult-fd
     (kbd "<leader>sb") 'consult-line
     (kbd "<leader>sB") 'consult-line-multi
+    (kbd "<leader>sc") 'search-configs
     (kbd "<leader>p") "\"+p"
     (kbd "<leader>P") "\"+P"
     (kbd "<leader>y") 'yank-to-plus-register
