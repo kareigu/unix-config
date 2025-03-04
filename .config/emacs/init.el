@@ -89,6 +89,10 @@
     (interactive "<R><x><y>")
     (evil-yank beg end type ?+ yank-handler))
   (evil-set-leader '(normal visual replace operator) (kbd "SPC"))
+  (evil-define-key 'insert 'global
+    (kbd "C-v") 'clipboard-yank
+    (kbd "C-a") 'move-beginning-of-line
+    (kbd "C-e") 'move-end-of-line)
   (evil-define-key 'normal 'global
     (kbd "<leader>.") 'find-file
     (kbd "<leader>bb") 'switch-to-buffer
