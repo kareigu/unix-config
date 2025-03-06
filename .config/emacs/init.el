@@ -229,8 +229,6 @@
 (use-package format-all
   :ensure t
   :after language-id
-  :commands format-all-mode
-  :hook (prog-mode . format-all-mode)
   :config)
 
 
