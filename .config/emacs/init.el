@@ -174,6 +174,12 @@
   (define-key corfu-map (kbd "C-p") 'corfu-previous)
   (define-key corfu-map (kbd "C-l") 'corfu-insert)
   (define-key corfu-map (kbd "C-e") 'corfu-reset))
+(use-package corfu-terminal
+  :ensure t
+  :after corfu
+  :init
+  (unless (display-graphic-p)
+    (corfu-terminal-mode +1)))
 (use-package cape
   :ensure t
   :bind ("C-c p" . cape-prefix-map)
@@ -281,3 +287,6 @@ Filename for the file can be set using ‘krg-persist-file-name'."
 (when window-system
   (add-hook 'after-init-hook 'krg-load-persist-file)
   (add-hook 'kill-emacs-hook 'krg-save-persist-file))
+
+(unless window-system
+  (xterm-mouse-mode +1))
