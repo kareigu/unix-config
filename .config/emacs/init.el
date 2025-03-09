@@ -27,9 +27,10 @@
 ;;;;;;;;;;;;;;;;;;;;
 ;; BASIC SETTINGS ;;
 ;;;;;;;;;;;;;;;;;;;;
-(tool-bar-mode -1)
+(when window-system
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1))
 (menu-bar-mode -1)
-(scroll-bar-mode -1)
 (global-display-line-numbers-mode 1)
 (prefer-coding-system 'utf-8-unix)
 (setq inhibit-splash-screen t)
