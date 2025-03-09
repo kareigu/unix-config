@@ -12,7 +12,7 @@ bm = ["bookmark", "move"]
 bu = ["bookmark", "move", "--to", "@-"]
 
 [signing]
-sign-all = true
+behavior = "own"
 backend = "gpg"
 
 [template-aliases]
