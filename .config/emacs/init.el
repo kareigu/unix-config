@@ -43,6 +43,8 @@
   (setq desktop-path `(,temp-dir)))
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
+(setq use-dialog-box nil)
+(setq use-short-answers t)
 (setq switch-to-prev-buffer-skip-regexp "\\*[^\\*]+\\*")
 (setq c-basic-offset 4)
 (setq scroll-margin 10)
