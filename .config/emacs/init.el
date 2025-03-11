@@ -43,6 +43,7 @@
   (setq desktop-path `(,temp-dir)))
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
+(setq switch-to-prev-buffer-skip-regexp "\\*[^\\*]+\\*")
 (setq c-basic-offset 4)
 (setq scroll-margin 10)
 (setq select-enable-clipboard nil)
