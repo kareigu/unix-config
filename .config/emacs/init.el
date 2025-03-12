@@ -239,7 +239,20 @@
 (use-package format-all
   :ensure t
   :after language-id
-  :config)
+  :config
+  (define-format-all-formatter gersemi
+    (:executable "gersemi")
+    (:install)
+    (:languages "CMake")
+    (:features)
+    (:format (format-all--buffer-easy executable)))
+  (setq-default format-all-formatters
+                '(("C" (clang-format))
+                  ("C++" (clang-format))
+                  ("Rust" (rustfmt))
+                  ("TOML" (taplo-fmt))
+                  ("CMake" (gersemi))
+                  ("Shell" (shfmt)))))
 
 
 (use-package emacs
