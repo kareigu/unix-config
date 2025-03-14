@@ -196,10 +196,10 @@
 ;;;;;;;;;;;;;;;;;;;;
 ;; LANGUAGE MODES ;;
 ;;;;;;;;;;;;;;;;;;;;
-(use-package cmake-mode :ensure t)
+(use-package cmake-mode :ensure t :if (executable-find "cmake"))
 (use-package toml-mode :ensure t)
-(use-package zig-mode :ensure t)
-(use-package rust-mode :ensure t)
+(use-package zig-mode :ensure t :if (executable-find "zig"))
+(use-package rust-mode :ensure t :if (or (executable-find "cargo") (executable-find "rustc")))
 (mapc 'load (file-expand-wildcards (conf-dir "local-modes/*.el")))
 
 
