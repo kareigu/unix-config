@@ -231,6 +231,8 @@
 
 (use-package git-gutter
   :ensure t
+  :init
+  (setq git-gutter:update-interval 2)
   :config
   (global-git-gutter-mode +1))
 
