@@ -216,6 +216,12 @@
   :hook (completion-list-mode . consult-preview-at-point-mode)
   )
 
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+
 (use-package hl-todo
   :ensure t
   :hook (prog-mode . hl-todo-mode)
