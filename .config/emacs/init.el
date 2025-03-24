@@ -100,7 +100,8 @@
     (kbd "C-e") 'move-end-of-line)
   (evil-define-key 'normal 'global
     (kbd "<leader>.") 'find-file
-    (kbd "<leader>bb") 'switch-to-buffer
+    (kbd "<leader>bb") 'evil-switch-to-windows-last-buffer
+    (kbd "<leader>bB") 'switch-to-buffer
     (kbd "<leader>bs") 'consult-buffer
     (kbd "<leader>bB") 'project-switch-to-buffer
     (kbd "<leader>bd") 'kill-current-buffer
