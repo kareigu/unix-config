@@ -279,7 +279,7 @@
     (:install)
     (:languages "CMake")
     (:features)
-    (:format (format-all--buffer-easy executable)))
+    (:format (format-all--buffer-easy executable "-")))
   (setq-default format-all-formatters
                 '(("C" (clang-format))
                   ("C++" (clang-format))
