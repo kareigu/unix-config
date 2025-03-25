@@ -24,6 +24,30 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
 
+;;;;;;;;;;;;;;
+;; LOAD ENV ;;
+;;;;;;;;;;;;;;
+(setq krg-env-file-name ".env.el")
+(when window-system
+  (let ((env-file (conf-dir krg-env-file-name)))
+    (when (file-exists-p env-file)
+      (load env-file))))
+
+(defun update-env-file()
+  (interactive)
+  (let ((shell-path (getenv "PATH"))
+        (env-file (conf-dir krg-env-file-name)))
+    (with-temp-buffer
+      (make-local-variable 'make-backup-files)
+      (setq make-backup-files nil)
+      (insert
+       ";;; " krg-env-file-name " -*- lexical-binding: t; -*-\n"
+       ";;; " (current-time-string) " " (nth 1 (current-time-zone)) ".\n"
+       "(setenv \"PATH\" \"" shell-path "\")\n"
+       "(setq exec-path (split-string \"" shell-path "\" \":\"))")
+      (when (file-writable-p env-file)
+        (write-file env-file)))))
+
 ;;;;;;;;;;;;;;;;;;;;
 ;; BASIC SETTINGS ;;
 ;;;;;;;;;;;;;;;;;;;;
