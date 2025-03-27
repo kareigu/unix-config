@@ -27,6 +27,6 @@ concat(
     indent("JJ:     ", diff.summary()),
   ),
   "\nJJ: ignore-rest\n",
-  indent("  " ,diff.git()),
+  diff.git(),
 )
 '''
