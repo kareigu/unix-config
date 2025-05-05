@@ -1,0 +1,15 @@
+command = "i3status-rs"
+
+background = "#16161D"
+color = "#C8C093"
+separator = "#2A2A37"
+tag_fg = "#54546D"
+tag_bg = "#363646"
+tag_focused_fg = "#DCD7BA"
+tag_focused_bg = "#E46876"
+tag_urgent_fg = "#DCD7BA"
+tag_urgent_bg = "#FFA066"
+
+separator_width = 0
+tags_r = 6
+blocks_r = 6

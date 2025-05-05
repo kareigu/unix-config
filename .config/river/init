@@ -1,0 +1,93 @@
+#!/bin/sh
+
+USE_BSP=0
+if [ -e "$(which river-bsp-layout)" ]; then
+	USE_BSP=1
+fi
+MAIN_MOD=Super
+
+riverctl map normal $MAIN_MOD+Shift Return spawn ghostty
+riverctl map normal $MAIN_MOD+Shift B spawn epiphany
+riverctl map normal $MAIN_MOD+Shift E spawn emacs
+riverctl map normal $MAIN_MOD Space spawn 'tofi-drun | xargs -I % riverctl spawn %'
+
+riverctl map normal $MAIN_MOD Q close
+
+riverctl map normal $MAIN_MOD+Shift+Control Q exit
+
+riverctl map normal $MAIN_MOD H focus-view left
+riverctl map normal $MAIN_MOD J focus-view next
+riverctl map normal $MAIN_MOD K focus-view previous
+riverctl map normal $MAIN_MOD L focus-view right
+
+riverctl map normal $MAIN_MOD+Shift H swap left
+riverctl map normal $MAIN_MOD+Shift J swap next
+riverctl map normal $MAIN_MOD+Shift K swap previous
+riverctl map normal $MAIN_MOD+Shift L swap right
+
+riverctl map normal $MAIN_MOD+Shift+Control K zoom
+
+riverctl map normal $MAIN_MOD Period focus-output next
+riverctl map normal $MAIN_MOD Comma focus-output previous
+
+riverctl map normal $MAIN_MOD+Shift Period send-to-output next
+riverctl map normal $MAIN_MOD+Shift Comma send-to-output previous
+
+riverctl map normal $MAIN_MOD Return zoom
+
+if [ $USE_BSP -eq 1 ]; then
+	riverctl map normal $MAIN_MOD Up send-layout-cmd bsp-layout "--dec-hsplit 0.05"
+	riverctl map normal $MAIN_MOD Down send-layout-cmd bsp-layout "--inc-hsplit 0.05"
+	riverctl map normal $MAIN_MOD Left send-layout-cmd bsp-layout "--dec-vsplit 0.05"
+	riverctl map normal $MAIN_MOD Right send-layout-cmd bsp-layout "--inc-vsplit 0.05"
+	riverctl map normal $MAIN_MOD+Shift Up send-layout-cmd bsp-layout "--start-vsplit"
+	riverctl map normal $MAIN_MOD+Shift Right send-layout-cmd bsp-layout "--start-hsplit"
+	riverctl map normal $MAIN_MOD+Shift Left send-layout-cmd bsp-layout "--reverse"
+else
+	riverctl map normal $MAIN_MOD Left send-layout-cmd rivertile "main-ratio -0.05"
+	riverctl map normal $MAIN_MOD Right send-layout-cmd rivertile "main-ratio +0.05"
+fi
+
+riverctl map-pointer normal $MAIN_MOD BTN_LEFT move-view
+
+riverctl map-pointer normal $MAIN_MOD BTN_RIGHT resize-view
+
+riverctl map-pointer normal $MAIN_MOD BTN_MIDDLE toggle-float
+
+for i in $(seq 1 9); do
+    tags=$((1 << ($i - 1)))
+
+    riverctl map normal $MAIN_MOD $i set-focused-tags $tags
+    riverctl map normal $MAIN_MOD+Shift $i set-view-tags $tags
+    riverctl map normal $MAIN_MOD+Control $i toggle-focused-tags $tags
+    riverctl map normal $MAIN_MOD+Shift+Control $i toggle-view-tags $tags
+done
+
+riverctl map normal $MAIN_MOD+Shift F toggle-float
+
+riverctl map normal $MAIN_MOD F toggle-fullscreen
+
+riverctl background-color 0x16161d
+riverctl border-color-unfocused 0x54546D
+riverctl border-color-focused 0xE46876
+riverctl border-width 5
+
+riverctl set-repeat 50 300
+
+riverctl rule-add -app-id 'float*' float
+riverctl rule-add ssd
+
+riverctl focus-follows-cursor normal
+riverctl default-attach-mode below
+
+if [ $USE_BSP -eq 1 ]; then
+	riverctl default-layout bsp-layout
+	river-bsp-layout --inner-gap 7 --outer-gap 18 --split-perc 0.5 &
+else
+	riverctl default-layout rivertile
+	rivertile -view-padding 6 -outer-padding 6 &
+fi
+
+swaybg -m fill -i $(cat ~/.current_wallpaper) &
+riverctl spawn i3bar-river
+riverctl spawn mako
