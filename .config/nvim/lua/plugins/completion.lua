@@ -1,23 +1,13 @@
 return {
   "saghen/blink.cmp",
-  lazy = false,
-  version = "v0.*",
+  version = "v1.*",
   dependencies = {
-    {
-      "garymjr/nvim-snippets",
-      opts = {
-        create_autocmd = true,
-        create_cmp_source = false,
-        friendly_snippets = true,
-      },
-    },
     "rafamadriz/friendly-snippets",
   },
   opts = {
     keymap = {
       preset = "default",
       ["<CR>"] = { "accept", "fallback" },
-      ["<C-K>"] = { "show_documentation", "hide_documentation" },
       ["<C-L>"] = { "snippet_forward", "fallback" },
       ["<C-H>"] = { "snippet_backward", "fallback" },
       ["<Tab>"] = { "fallback" },
@@ -30,9 +20,8 @@ return {
     signature = {
       enabled = true,
     },
-    sources = {
-      default = { "lsp", "path", "snippets", "buffer" },
-      cmdline = {},
+    cmdline = {
+      enabled = false,
     },
     completion = {
       menu = {
@@ -49,4 +38,5 @@ return {
       },
     },
   },
+  opts_extend = { "sources.default" },
 }
