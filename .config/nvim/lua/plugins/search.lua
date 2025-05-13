@@ -1,7 +1,7 @@
 ---@type LazySpec
 return {
   "ibhagwan/fzf-lua",
-  opts = {},
+  opts = { "ivy" },
   cmd = "FzfLua",
   keys = {
     { "<leader><leader>", "<cmd>FzfLua files<cr>", desc = "Search files" },
