@@ -70,6 +70,7 @@
 (setq desktop-restore-frames nil)
 (setq use-dialog-box nil)
 (setq use-short-answers t)
+(setq dabbrev-case-replace nil)
 (setq switch-to-prev-buffer-skip-regexp "\\*[^\\*]+\\*")
 (setq c-basic-offset 4)
 (setq scroll-margin 10)
