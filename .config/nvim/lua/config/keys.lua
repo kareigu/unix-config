@@ -17,6 +17,9 @@ vim.keymap.set("n", "H", function()
   vim.cmd.bp()
 end, { desc = "Previous buffer" })
 
+vim.keymap.set("n", "<leader>bb", function()
+  vim.cmd.b("#")
+end, { desc = "Go to last buffer" })
 vim.keymap.set("n", "<leader>bd", function()
   local bufnr = vim.api.nvim_get_current_buf()
 
