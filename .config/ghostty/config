@@ -24,3 +24,5 @@ window-padding-balance = true
 window-padding-color = extend
 
 theme = "Kanagawa Wave"
+
+custom-shader = "cursor.glsl"
