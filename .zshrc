@@ -66,7 +66,10 @@ alias gp="git push"
 alias gc="git commit"
 alias lzg=lazygit
 
-
-alias ls="lsd"
+if [ -x "$(which lsr)" ]; then
+    alias ls="lsr"
+elif [ -x "$(which lsd)" ]; then
+    alias ls="lsd"
+fi
 alias l="ls -la"
 alias la="ls -lA"
