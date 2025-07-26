@@ -29,7 +29,7 @@ zstyle ':completion:*' menu yes select
 unsetopt LIST_BEEP
 
 export PATH=~/.cargo/bin/:$PATH
-export PATH=~/.zig/:$PATH
+export PATH=~/.zvm/bin:$PATH
 export PATH=~/.local/bin:$PATH
 
 eval "$(starship init zsh)"
