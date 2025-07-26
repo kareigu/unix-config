@@ -16,25 +16,6 @@ return {
     end,
   },
   {
-    "julienvincent/hunk.nvim",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-    },
-    cond = function()
-      return vim.fn.executable("jj") == 1
-    end,
-    cmd = { "DiffEditor" },
-    opts = {
-      ui = {
-        tree = {
-          mode = "flat",
-        },
-        layout = "horizontal",
-      },
-    },
-    config = true,
-  },
-  {
     "ojroques/nvim-bufdel",
     cmd = { "BufDel", "BufDelOthers", "BufDelAll" },
     opts = {
