@@ -20,34 +20,9 @@ end, { desc = "Previous buffer" })
 vim.keymap.set("n", "<leader>bb", function()
   vim.cmd.b("#")
 end, { desc = "Go to last buffer" })
-vim.keymap.set("n", "<leader>bd", function()
-  local bufnr = vim.api.nvim_get_current_buf()
 
-  if not vim.bo[bufnr].modified then
-    vim.cmd.bd()
-    return
-  end
-
-  local buf_name = vim.api.nvim_buf_get_name(bufnr)
-  local choice = vim.fn.confirm("Unsaved changes in " .. buf_name .. ", save?", "&Yes\n&No\n&Cancel", "Cancel", "Question")
-
-  if choice == 1 then
-    vim.notify("Saved buffer", vim.log.levels.INFO, { title = buf_name })
-    vim.cmd.write()
-    vim.api.nvim_buf_delete(bufnr, { force = false })
-  elseif choice == 2 then
-    vim.notify("Closed buffer without saving", vim.log.levels.WARN, { title = buf_name })
-    vim.api.nvim_buf_delete(bufnr, { force = true })
-  else
-    vim.notify("Cancelled closing buffer", vim.log.levels.WARN, { title = buf_name })
-  end
-end, { desc = "Close current buffer" })
-
-vim.keymap.set("n", "<leader>bD", function()
-  vim.api.nvim_buf_delete(vim.api.nvim_get_current_buf(), { force = true })
-
-  local bufnr = vim.api.nvim_get_current_buf()
-  if vim.bo[bufnr].modified then
-    vim.notify("Closed buffer without saving", vim.log.levels.WARN)
-  end
-end, { desc = "Force close current buffer" })
+vim.keymap.set("n", "<leader>bd", "<cmd>BufDel<cr>", { desc = "Close current buffer" })
+vim.keymap.set("n", "<leader>bD", "<cmd>BufDel!<cr>", { desc = "Force close current buffer" })
+vim.keymap.set("n", "<leader>bo", "<cmd>BufDelOthers<cr>", { desc = "Close all other buffers" })
+vim.keymap.set("n", "<leader>bO", "<cmd>BufDelOthers!<cr>", { desc = "Force close all other buffers" })
+vim.keymap.set("n", "<leader>bA", "<cmd>BufDelAll!<cr>", { desc = "Force close all buffers" })

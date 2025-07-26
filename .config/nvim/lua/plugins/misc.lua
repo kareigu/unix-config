@@ -34,4 +34,11 @@ return {
     },
     config = true,
   },
+  {
+    "ojroques/nvim-bufdel",
+    cmd = { "BufDel", "BufDelOthers", "BufDelAll" },
+    opts = {
+      quit = false,
+    },
+  },
 }
