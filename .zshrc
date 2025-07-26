@@ -32,8 +32,13 @@ export PATH=~/.cargo/bin/:$PATH
 export PATH=~/.zvm/bin:$PATH
 export PATH=~/.local/bin:$PATH
 
-eval "$(starship init zsh)"
 eval "$(zoxide init zsh --cmd cd)"
+if [ -x "$(which starship)" ]; then
+  eval "$(starship init zsh)"
+else
+  echo "starship not in path"
+fi
+
 export GPG_TTY=$(tty)
 export EDITOR='emacs -nw'
 export MANPAGER="sh -c 'col -xbf | bat -p -l man'"
