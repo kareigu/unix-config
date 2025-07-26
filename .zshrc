@@ -32,11 +32,16 @@ export PATH=~/.cargo/bin/:$PATH
 export PATH=~/.zvm/bin:$PATH
 export PATH=~/.local/bin:$PATH
 
-eval "$(zoxide init zsh --cmd cd)"
 if [ -x "$(which starship)" ]; then
   eval "$(starship init zsh)"
 else
   echo "starship not in path"
+fi
+
+if [ -x "$(which zoxide)" ]; then
+  eval "$(zoxide init zsh --cmd cd)"
+else
+  echo "zoxide not in path"
 fi
 
 export GPG_TTY=$(tty)
