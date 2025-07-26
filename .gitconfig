@@ -5,7 +5,7 @@
 [pull]
 	rebase = true
 [core]
-	editor = emacs -nw
+	editor = nvim
 	pager = delta
 
 [interactive]
