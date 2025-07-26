@@ -45,8 +45,15 @@ else
 fi
 
 export GPG_TTY=$(tty)
-export EDITOR='emacs -nw'
 export MANPAGER="sh -c 'col -xbf | bat -p -l man'"
+
+if [ -x "$(which nvim)" ]; then
+  export EDITOR='nvim'
+elif [ -x "$(which vim)" ]; then
+  export EDITOR='vim'
+else
+  export EDITOR='vi'
+fi
 
 # git
 alias gs="git status"
