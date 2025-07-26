@@ -5,14 +5,18 @@ source "${ZINIT_HOME}/zinit.zsh"
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
+if [ -x "$(which jj)" ]; then
+  JJ_INSTALLED="$(which jj)"
+fi
+
 zinit wait lucid for \
   atinit"zicompinit; zicdreplay" \
       zdharma-continuum/fast-syntax-highlighting \
   atload"_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
   blockf atpull'zinit creinstall -q .' \
-  atload"source <(jj util completion zsh)" \
-  atload"source <(COMPLETE=zsh jj)" \
+  atload"if [ -v JJ_INSTALLED ]; then; source <(jj util completion zsh); fi" \
+  atload"if [ -v JJ_INSTALLED ]; then; source <(COMPLETE=zsh jj); fi" \
       zsh-users/zsh-completions
 
 zinit id-as"auto" for \
