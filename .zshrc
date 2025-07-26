@@ -45,7 +45,6 @@ else
 fi
 
 export GPG_TTY=$(tty)
-export MANPAGER="sh -c 'col -xbf | bat -p -l man'"
 
 if [ -x "$(which nvim)" ]; then
   export EDITOR='nvim'
@@ -53,6 +52,10 @@ elif [ -x "$(which vim)" ]; then
   export EDITOR='vim'
 else
   export EDITOR='vi'
+fi
+
+if [ -x "$(which batman)" ]; then
+    eval "$(batman --export-env)"
 fi
 
 # git
