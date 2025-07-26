@@ -4,7 +4,7 @@ email = "mail@karei.dev"
 
 [ui]
 default-command = "status"
-diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
+diff-editor = ":builtin"
 
 [aliases]
 b = ["bookmark"]
