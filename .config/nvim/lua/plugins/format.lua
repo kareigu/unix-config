@@ -16,6 +16,18 @@ local formatters = {
   },
 }
 
+local ok, local_fmt = pcall(require, "local_fmt")
+if ok then
+  if local_fmt.ft_formatters ~= nil then
+    ft_formatters = vim.tbl_deep_extend("force", ft_formatters, local_fmt.ft_formatters)
+  end
+  if local_fmt.formatters ~= nil then
+    formatters = vim.tbl_deep_extend("force", formatters, local_fmt.formatters)
+  end
+else
+  vim.print("error loading local_fmt")
+end
+
 return {
   "stevearc/conform.nvim",
   lazy = true,
@@ -36,6 +48,11 @@ return {
       end,
       mode = { "x", "v" },
       desc = "Format selection",
+    },
+    {
+      "<leader>ci",
+      "<cmd>ConformInfo<cr>",
+      desc = "Formatter info",
     },
   },
   opts = {
