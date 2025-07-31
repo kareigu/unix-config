@@ -62,6 +62,12 @@ if [ -x "$(which opam)" ]; then
     eval "$(opam env --switch=default)"
 fi
 
+
+LOCAL_ZSH_PATH="$HOME/.local.zsh"
+if [ -f "$LOCAL_ZSH_PATH" ]; then
+    source "$LOCAL_ZSH_PATH"
+fi
+
 # git
 alias gs="git status"
 alias gap="git add -p"
