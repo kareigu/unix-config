@@ -58,6 +58,10 @@ if [ -x "$(which batman)" ]; then
     eval "$(batman --export-env)"
 fi
 
+if [ -x "$(which opam)" ]; then
+    eval "$(opam env --switch=default)"
+fi
+
 # git
 alias gs="git status"
 alias gap="git add -p"
