@@ -40,6 +40,6 @@ jj log -r@ -n1 --ignore-working-copy --no-graph --color always  -T '
   )
 '
 '''
-detect_folders = [".jj"]
+when = "jj root --ignore-working-copy"
 symbol = "🐦 "
 style = "bold blue"
