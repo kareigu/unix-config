@@ -67,6 +67,7 @@
   (setq desktop-path `(,temp-dir)))
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
+(setq-default display-line-numbers-width 4)
 (setq desktop-restore-frames nil)
 (setq use-dialog-box nil)
 (setq use-short-answers t)
