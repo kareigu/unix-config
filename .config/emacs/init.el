@@ -283,12 +283,12 @@
     (:features)
     (:format (format-all--buffer-easy executable "-")))
   (setq-default format-all-formatters
-                '(("C" (clang-format))
+                `(("C" (clang-format))
                   ("C++" (clang-format))
                   ("Rust" (rustfmt))
                   ("TOML" (taplo-fmt))
                   ("CMake" (gersemi))
-                  ("Shell" (shfmt)))))
+                  ("Shell" (shfmt "-i" ,(format "%d" tab-width))))))
 
 
 (use-package emacs
