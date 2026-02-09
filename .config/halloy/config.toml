@@ -13,9 +13,16 @@ channels = ["#halloy", "#neovim", "#zig", "#ghostty"]
 dangerously_accept_invalid_certs = true
 
 [sidebar]
-buffer_action = "replace-pane"
-unread_indicators = "dot"
 position = "top"
+
+[sidebar.unread_indicator]
+title = true
+icon = "dot"
+highlight_icon = "circle-empty"
+
+[actions.sidebar]
+buffer = "replace-pane"
+focused_buffer = "close-pane"
 
 [buffer.channel.topic]
 enabled = true
@@ -24,7 +31,7 @@ enabled = true
 auto_format = "markdown"
 
 [buffer.timestamp]
-format = "%b %e - %X"
+format = "%X"
 
 [font]
 family = "TX-02"
