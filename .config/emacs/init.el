@@ -203,12 +203,14 @@
   :ensure t
   :custom
   (corfu-auto t)
+  :bind
+  (:map corfu-map
+        ("C-n" . 'corfu-next)
+        ("C-p" . 'corfu-previous)
+        ("C-y" . 'corfu-insert)
+        ("C-e" . 'corfu-reset))
   :init
   (global-corfu-mode)
-  (define-key corfu-map (kbd "C-n") 'corfu-next)
-  (define-key corfu-map (kbd "C-p") 'corfu-previous)
-  (define-key corfu-map (kbd "C-l") 'corfu-insert)
-  (define-key corfu-map (kbd "C-e") 'corfu-reset))
 (use-package corfu-terminal
   :ensure t
   :after corfu
