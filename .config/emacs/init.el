@@ -205,12 +205,15 @@
   (corfu-auto t)
   :bind
   (:map corfu-map
+        ("RET" . nil)
         ("C-n" . 'corfu-next)
         ("C-p" . 'corfu-previous)
         ("C-y" . 'corfu-insert)
         ("C-e" . 'corfu-reset))
   :init
   (global-corfu-mode)
+  :config
+  (evil-make-intercept-map corfu-map 'insert))
 (use-package corfu-terminal
   :ensure t
   :after corfu
