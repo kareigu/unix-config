@@ -84,12 +84,13 @@
 ;; APPEARANCE ;;
 ;;;;;;;;;;;;;;;;
 (set-frame-font "TX-02 13" nil t)
-(use-package autothemer
-  :ensure t)
-(use-package cl-lib
-  :ensure t)
-(load-file (conf-dir "kanagawa-theme.el"))
-(load-theme 'kanagawa)
+(use-package kanagawa-themes
+  :ensure t
+  :custom
+  (kanagawa-themes-comment-italic nil)
+  (kanagawa-themes-keyword-italic nil)
+  :config
+  (load-theme 'kanagawa-wave t))
 
 ;;;;;;;;;;;;;;;;;
 ;; EVIL CONFIG ;;
