@@ -201,8 +201,9 @@
 
 (use-package corfu
   :ensure t
+  :custom
+  (corfu-auto t)
   :init
-  (setq corfu-auto t)
   (global-corfu-mode)
   (define-key corfu-map (kbd "C-n") 'corfu-next)
   (define-key corfu-map (kbd "C-p") 'corfu-previous)
