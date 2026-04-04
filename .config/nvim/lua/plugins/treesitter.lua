@@ -1,13 +1,7 @@
----@type LazySpec
 return {
   "nvim-treesitter/nvim-treesitter",
+  lazy = false,
   build = ":TSUpdate",
-  event = { "BufReadPost", "BufNew", "VeryLazy" },
-  cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-  main = "nvim-treesitter.configs",
-  ---@module "nvim-treesitter"
-  ---@type TSConfig
-  ---@diagnostic disable: missing-fields
   opts = {
     ensure_installed = {
       "bash",
