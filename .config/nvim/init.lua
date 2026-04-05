@@ -47,8 +47,77 @@ if vim.g.neovide then
   transparent = false
 end
 
-require("config.keys")
-require("config.cmds")
+-- KEYS
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+vim.keymap.set({ "n", "x" }, "m", "<Nop>")
+
+vim.keymap.set("n", "<leader>ce", vim.diagnostic.open_float, { desc = "Diagnostic error messages" })
+vim.keymap.set("n", "<leader>cq", vim.diagnostic.setloclist, { desc = "Diagnostic quickfix list" })
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
+vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Focus the left window" })
+vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Focus the right window" })
+vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Focus the lower window" })
+vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Focus the upper window" })
+
+vim.keymap.set("n", "L", function()
+  vim.cmd.bn()
+end, { desc = "Next buffer" })
+vim.keymap.set("n", "H", function()
+  vim.cmd.bp()
+end, { desc = "Previous buffer" })
+
+vim.keymap.set("n", "<leader>bb", function()
+  vim.cmd.b("#")
+end, { desc = "Go to last buffer" })
+
+vim.keymap.set("n", "<leader>bd", "<cmd>BufDel<cr>", { desc = "Close current buffer" })
+vim.keymap.set("n", "<leader>bD", "<cmd>BufDel!<cr>", { desc = "Force close current buffer" })
+vim.keymap.set("n", "<leader>bo", "<cmd>BufDelOthers<cr>", { desc = "Close all other buffers" })
+vim.keymap.set("n", "<leader>bO", "<cmd>BufDelOthers!<cr>", { desc = "Force close all other buffers" })
+vim.keymap.set("n", "<leader>bA", "<cmd>BufDelAll!<cr>", { desc = "Force close all buffers" })
+-- END KEYS
+
+-- COMMANDS
+vim.api.nvim_create_user_command("OpenConfig", function()
+  vim.fn.chdir(vim.fn.stdpath("config"))
+  vim.cmd.edit("$MYVIMRC")
+end, {})
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+  group = vim.api.nvim_create_augroup("krg_last_location", { clear = true }),
+  callback = function(event)
+    local exclude = { "gitcommit", "jjdescription" }
+    local buf = event.buf
+    if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].krg_last_location then
+      return
+    end
+    vim.b[buf].krg_last_location = true
+    local mark = vim.api.nvim_buf_get_mark(buf, '"')
+    local lcount = vim.api.nvim_buf_line_count(buf)
+    if mark[1] > 0 and mark[1] <= lcount then
+      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("krg_wrap_spell", { clear = true }),
+  pattern = { "gitcommit", "markdown", "jjdescription" },
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.spell = true
+  end,
+})
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Highlight yanked text",
+  group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
+-- END COMMANDS
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
