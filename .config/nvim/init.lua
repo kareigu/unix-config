@@ -17,9 +17,7 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
-if vim.fn.has("nvim-0.12") == 1 then
-  vim.opt.autocomplete = true
-end
+vim.opt.autocomplete = true
 vim.opt.completeopt = "noselect,menuone,fuzzy"
 vim.o.textwidth = 100
 vim.o.colorcolumn = "+1"
