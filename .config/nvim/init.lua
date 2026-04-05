@@ -48,29 +48,41 @@ if vim.g.neovide then
   transparent = false
 end
 
+local function map(binds)
+  for _, bind in ipairs(binds) do
+    if bind[4] ~= nil then
+      vim.keymap.set(bind[1], bind[2], bind[3], bind[4])
+    else
+      vim.keymap.set(bind[1], bind[2], bind[3])
+    end
+  end
+end
+
 -- KEYS
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-vim.keymap.set({ "n", "x" }, "m", "<Nop>")
+map({
+  { "n", "<Esc>", "<cmd>nohlsearch<CR>" },
+  { { "n", "x" }, "m", "<Nop>" },
+})
 
-vim.keymap.set("n", "<leader>ce", vim.diagnostic.open_float, { desc = "Diagnostic error messages" })
-vim.keymap.set("n", "<leader>cq", vim.diagnostic.setloclist, { desc = "Diagnostic quickfix list" })
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+map({
+  { "n", "<leader>ce", vim.diagnostic.open_float, { desc = "Diagnostic error messages" } },
+  { "n", "<leader>cq", vim.diagnostic.setloclist, { desc = "Diagnostic quickfix list" } },
+  { "t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" } },
+})
 
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Focus the left window" })
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Focus the right window" })
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Focus the lower window" })
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Focus the upper window" })
+map({
+  { "n", "<C-h>", "<C-w><C-h>", { desc = "Focus the left window" } },
+  { "n", "<C-l>", "<C-w><C-l>", { desc = "Focus the right window" } },
+  { "n", "<C-j>", "<C-w><C-j>", { desc = "Focus the lower window" } },
+  { "n", "<C-k>", "<C-w><C-k>", { desc = "Focus the upper window" } },
+})
 
-vim.keymap.set("n", "L", function()
-  vim.cmd.bn()
-end, { desc = "Next buffer" })
-vim.keymap.set("n", "H", function()
-  vim.cmd.bp()
-end, { desc = "Previous buffer" })
+map({
+  { "n", "L", "<cmd>bn<cr>", { desc = "Next buffer" } },
+  { "n", "H", "<cmd>bp<cr>", { desc = "Previous buffer" } },
+  { "n", "<leader>bb", "<cmd>b #<cr>", { desc = "Go to last buffer" } },
+})
 
-vim.keymap.set("n", "<leader>bb", function()
-  vim.cmd.b("#")
-end, { desc = "Go to last buffer" })
 
 vim.keymap.set("n", "<leader>bd", "<cmd>BufDel<cr>", { desc = "Close current buffer" })
 vim.keymap.set("n", "<leader>bD", "<cmd>BufDel!<cr>", { desc = "Force close current buffer" })
