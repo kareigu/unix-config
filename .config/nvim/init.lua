@@ -19,6 +19,7 @@ vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
 vim.opt.autocomplete = true
 vim.opt.completeopt = "noselect,menuone,fuzzy"
+vim.o.pumborder = "rounded"
 vim.o.textwidth = 100
 vim.o.colorcolumn = "+1"
 vim.o.showbreak = "↪ "
