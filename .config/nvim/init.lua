@@ -71,6 +71,7 @@ map({
 map({
     { "n", "<leader>ce", vim.diagnostic.open_float, { desc = "Diagnostic error messages" } },
     { "n", "<leader>cq", vim.diagnostic.setloclist, { desc = "Diagnostic quickfix list" } },
+    { "n", "<leader>cc", "<cmd>Compile<cr>", { desc = "Compile" } },
     { "t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" } },
 })
 
@@ -181,6 +182,122 @@ vim.api.nvim_create_user_command("ListPackages", function()
 
     vim.bo[bufnr].filetype = "pack-info"
 end, {})
+
+vim.api.nvim_create_user_command("Compile", function(opts)
+    if vim.g.krg_compile_last_command == nil then
+        vim.g.krg_compile_last_command = "cd build && ninja"
+    end
+    local function handle_compile(input)
+        local bufnr = vim.api.nvim_create_buf(false, true)
+        local winid = vim.api.nvim_open_win(bufnr, true, {
+            relative = "editor",
+            border = "rounded",
+            width = vim.o.columns - 6,
+            height = vim.o.lines - 6,
+            col = 2,
+            row = 2,
+            style = "minimal",
+        })
+
+        local function handle_output(err, data)
+            if err ~= nil then
+                vim.notify(err, vim.log.levels.ERROR)
+                return
+            end
+
+            if data == nil then
+                return
+            end
+
+            vim.schedule(function()
+                if not vim.api.nvim_win_is_valid(winid) then
+                    return
+                end
+
+                local ansi_stripped = data:gsub("\x1b%[[%d;]*[a-zA-Z]", "")
+                local lines = vim.split(ansi_stripped, "\n", { trimempty = true })
+                vim.api.nvim_buf_set_lines(bufnr, -1, -1, true, lines)
+            end)
+        end
+
+        local obj = vim.system({ "sh", "-c", input }, {
+            text = true,
+            stdout = handle_output,
+            stderr = handle_output,
+        }, function(obj)
+            if obj ~= nil then
+                vim.schedule(function()
+                    vim.api.nvim_buf_set_lines(bufnr, -1, -1, true, { string.format("-- exited with code %d --", obj.code) })
+                    vim.bo[bufnr].modifiable = false
+                end)
+            end
+        end)
+        vim.api.nvim_buf_set_lines(bufnr, -1, -1, true, { string.format("-- running: %s --", input) })
+
+        vim.bo[bufnr].modified = false
+        vim.bo[bufnr].bufhidden = "wipe"
+        map({
+            { "n", "q", "<cmd>close<cr>", { buffer = bufnr, nowait = true } },
+            { "n", "<C-c>", "<cmd>close<cr>", { buffer = bufnr } },
+            { "n", "<Esc>", "<cmd>close<cr>", { buffer = bufnr } },
+            {
+                "n",
+                "o",
+                function()
+                    if not vim.api.nvim_win_is_valid(winid) then
+                        return
+                    end
+                    vim.api.nvim_win_set_config(winid, {
+                        split = "right",
+                        win = vim.fn.win_getid(vim.fn.winnr("#")),
+                    })
+                end,
+                { buffer = bufnr },
+            },
+        })
+        vim.api.nvim_create_autocmd("BufDelete", {
+            desc = "Close compilation window on buffer close",
+            buffer = bufnr,
+            once = true,
+            nested = true,
+            callback = function()
+                if not obj:is_closing() then
+                    obj:kill("SIGTERM")
+                end
+                if vim.api.nvim_win_is_valid(winid) then
+                    vim.api.nvim_win_close(winid, true)
+                end
+            end,
+        })
+
+        vim.bo[bufnr].filetype = "compilation"
+    end
+
+    if #opts.args > 0 then
+        handle_compile(opts.args)
+    else
+        vim.ui.input({
+            prompt = "Compile: ",
+            default = vim.g.krg_compile_last_command,
+            completion = "shellcmdline",
+        }, function(input)
+            if input == nil then
+                return
+            end
+            if #input == 0 then
+                vim.g.krg_compile_last_command = nil
+                vim.notify("Empty command not allowed", vim.log.levels.ERROR)
+                return
+            end
+            vim.g.krg_compile_last_command = input
+            handle_compile(input)
+        end)
+    end
+end, {
+    desc = "Run compilation command and display the output in a buffer",
+    complete = "shellcmdline",
+    nargs = "*",
+})
 
 vim.api.nvim_create_autocmd("BufReadPost", {
     group = vim.api.nvim_create_augroup("krg_last_location", { clear = true }),
