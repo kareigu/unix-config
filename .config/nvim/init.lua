@@ -734,25 +734,27 @@ use_pack({
     instant = true,
     on_update = "TSUpdate",
     setup = function()
-        require("nvim-treesitter").setup({
-            ensure_installed = {
-                "bash",
-                "c",
-                "cpp",
-                "diff",
-                "html",
-                "lua",
-                "luadoc",
-                "rust",
-                "toml",
-                "vim",
-                "vimdoc",
-                "yaml",
-                "zig",
-            },
-            auto_install = false,
-            highlight = { enable = true, disable = { "markdown" } },
-            indent = { enable = true },
+        local ensure_installed = {
+            "bash",
+            "c",
+            "cpp",
+            "diff",
+            "html",
+            "lua",
+            "luadoc",
+            "rust",
+            "toml",
+            "vim",
+            "vimdoc",
+            "yaml",
+            "zig",
+        }
+        require("nvim-treesitter").install(ensure_installed)
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = require("nvim-treesitter").get_installed(),
+            callback = function()
+                vim.treesitter.start()
+            end,
         })
     end,
 })
