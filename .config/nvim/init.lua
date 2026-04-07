@@ -768,7 +768,14 @@ use_pack({
     end,
 })
 
-use_pack({ "https://github.com/nvim-tree/nvim-web-devicons" })
+use_pack({
+    "https://github.com/nvim-mini/mini.icons",
+    setup = function()
+        local icons = require("mini.icons")
+        icons.setup()
+        icons.mock_nvim_web_devicons()
+    end,
+})
 use_pack({
     "https://github.com/rcarriga/nvim-notify",
     event = "VimEnter",
