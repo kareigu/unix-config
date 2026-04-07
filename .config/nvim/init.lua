@@ -220,19 +220,32 @@ vim.api.nvim_create_user_command("Compile", function(opts)
             end)
         end
 
-        local obj = vim.system({ "sh", "-c", input }, {
-            text = true,
-            stdout = handle_output,
-            stderr = handle_output,
-        }, function(obj)
-            if obj ~= nil then
-                vim.schedule(function()
-                    vim.api.nvim_buf_set_lines(bufnr, -1, -1, true, { string.format("-- exited with code %d --", obj.code) })
+        local stdout = vim.uv.new_pipe()
+        local stderr = vim.uv.new_pipe()
+        local handle, pid, err = vim.uv.spawn("sh", {
+            args = { "-c", input },
+            stdio = { nil, stdout, stderr },
+            hide = true,
+        }, function(code, signal)
+            vim.schedule(function()
+                if vim.api.nvim_win_is_valid(winid) then
+                    vim.api.nvim_buf_set_lines(bufnr, -1, -1, true, { string.format("-- exited with code %d --", code) })
                     vim.bo[bufnr].modifiable = false
-                end)
-            end
+                    if handle ~= nil then
+                        handle:close()
+                    end
+                end
+            end)
         end)
-        vim.api.nvim_buf_set_lines(bufnr, -1, -1, true, { string.format("-- running: %s --", input) })
+
+        if err ~= nil then
+            vim.api.nvim_buf_set_lines(bufnr, -1, -1, true, { string.format("-- failed running: %s --", err) })
+        else
+            vim.api.nvim_buf_set_lines(bufnr, -1, -1, true, { string.format("-- running(%d): %s --", pid, input) })
+
+            vim.uv.read_start(stdout, handle_output)
+            vim.uv.read_start(stderr, handle_output)
+        end
 
         vim.bo[bufnr].modified = false
         vim.bo[bufnr].bufhidden = "wipe"
@@ -255,14 +268,16 @@ vim.api.nvim_create_user_command("Compile", function(opts)
                 { buffer = bufnr },
             },
         })
-        vim.api.nvim_create_autocmd("BufDelete", {
+        vim.api.nvim_create_autocmd("BufUnload", {
             desc = "Close compilation window on buffer close",
             buffer = bufnr,
             once = true,
             nested = true,
             callback = function()
-                if not obj:is_closing() then
-                    obj:kill("SIGTERM")
+                if handle:is_closing() ~= true then
+                    stdout:read_stop()
+                    stderr:read_stop()
+                    handle:kill()
                 end
                 if vim.api.nvim_win_is_valid(winid) then
                     vim.api.nvim_win_close(winid, true)
