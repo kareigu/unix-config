@@ -185,7 +185,7 @@ end, {})
 
 vim.api.nvim_create_user_command("Compile", function(opts)
     if vim.g.krg_compile_last_command == nil then
-        vim.g.krg_compile_last_command = "cd build && ninja"
+        vim.g.krg_compile_last_command = "ninja -C build"
     end
     local function handle_compile(input)
         local bufnr = vim.api.nvim_create_buf(false, true)
@@ -222,8 +222,11 @@ vim.api.nvim_create_user_command("Compile", function(opts)
 
         local stdout = vim.uv.new_pipe()
         local stderr = vim.uv.new_pipe()
-        local handle, pid, err = vim.uv.spawn("sh", {
-            args = { "-c", input },
+
+        local args = vim.split(input, "%s")
+        local cmd = table.remove(args, 1)
+        local handle, pid, err = vim.uv.spawn(cmd, {
+            args = args,
             stdio = { nil, stdout, stderr },
             hide = true,
         }, function(code, signal)
