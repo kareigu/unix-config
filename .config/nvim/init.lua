@@ -258,6 +258,17 @@ vim.api.nvim_create_user_command("Compile", function(opts)
             { "n", "<Esc>", "<cmd>close<cr>", { buffer = bufnr } },
             {
                 "n",
+                "c",
+                function()
+                    if handle ~= nil and not handle:is_closing() then
+                        handle:kill()
+                        vim.notify("compilation aborted")
+                    end
+                end,
+                { buffer = bufnr },
+            },
+            {
+                "n",
                 "o",
                 function()
                     if not vim.api.nvim_win_is_valid(winid) then
