@@ -233,6 +233,8 @@ vim.api.nvim_create_user_command("Compile", function(opts)
             vim.schedule(function()
                 if vim.api.nvim_win_is_valid(winid) then
                     vim.api.nvim_buf_set_lines(bufnr, -1, -1, true, { string.format("-- exited with code %d --", code) })
+                    stdout:read_stop()
+                    stderr:read_stop()
                     vim.bo[bufnr].modifiable = false
                     if handle ~= nil then
                         handle:close()
@@ -288,7 +290,7 @@ vim.api.nvim_create_user_command("Compile", function(opts)
             once = true,
             nested = true,
             callback = function()
-                if handle:is_closing() ~= true then
+                if handle ~= nil and handle:is_closing() ~= true then
                     stdout:read_stop()
                     stderr:read_stop()
                     handle:kill()
